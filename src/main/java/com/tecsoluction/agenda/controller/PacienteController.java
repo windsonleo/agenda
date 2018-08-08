@@ -15,6 +15,7 @@ import com.tecsoluction.agenda.entidade.Paciente;
 import com.tecsoluction.agenda.framework.AbstractController;
 import com.tecsoluction.agenda.framework.AbstractEditor;
 import com.tecsoluction.agenda.servico.PacienteServicoImpl;
+import com.tecsoluction.agenda.util.TipoTerapia;
 
 
 
@@ -28,6 +29,8 @@ public class PacienteController extends AbstractController<Paciente> {
 
 		 
 	 private final PacienteServicoImpl ususervice;
+	 
+	 private TipoTerapia[] tipo;
 	 
 	
 	
@@ -54,6 +57,8 @@ public class PacienteController extends AbstractController<Paciente> {
 //    	List<Role> roles = roleservico.findAll();
     	
 //    	Genero[] generos = Genero.values();
+    	
+    	tipo = TipoTerapia.values();
 
         Paciente paciente = new Paciente();
 //        paciente.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -61,7 +66,7 @@ public class PacienteController extends AbstractController<Paciente> {
 
                 
 //        model.addAttribute("pacienteAtt", paciente);
-//        model.addAttribute("generos", generos);
+        model.addAttribute("tiposterapia", tipo);
         model.addAttribute("paciente", paciente);
 //        model.addAttribute("roles", roles);
 

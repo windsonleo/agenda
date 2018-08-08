@@ -49,6 +49,7 @@
                 <thead>
                 <tr>
                                             <th class="hide">Id</th>
+                                             <th >Foto</th>
                                             <th >Nome</th>
                                             <th >Telefone</th>
                                              <th >CPF</th>
@@ -79,6 +80,8 @@
                                         <tbody>
                                             <tr th:each="paciente: ${pacienteList}">
                                                 <td th:text="${paciente.id}" class="hide">id</td>
+                                           <td><img th:src="@{/img/avatar.jpg}" class="img-circle img-sm" alt="fotoPaciente"/></td>
+                                                
                                                   <td th:text="${paciente.nome}">nome</td>
                                                    <td th:text="${paciente.telefone}">telefone</td>
                                                     <td th:text="${paciente.cpf}">cpf</td>
@@ -89,9 +92,9 @@
 		                                            
 <!-- 		                                            <td th:text="${jogobicho}" >Resultado</td> -->
 		                                          
-		                                       
+		                                         <td>
 							              <div sec:authorize="hasRole('ROLE_ADM')" >
-	                                              <td>
+	                                            
 	                                             
 	                                              <div class="btn-group-horizontal" >
                                                         <a  rel="tooltip" title="Informacoes" class="" th:href="@{/paciente/informacao(id=${paciente.id})}">
@@ -107,10 +110,10 @@
                                     						<i class="material-icons">close</i>
 			                       						</a>
 	                       						</div>
-	                       						 	</td>	
+	                       						 		
 	                       						 
 					                            </div>
-		                                            
+		                                            </td>
 		                                         
 		                                            
 		                                            
