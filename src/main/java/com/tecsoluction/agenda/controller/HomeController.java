@@ -63,9 +63,9 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView Homem(Locale locale, Model model) {
        
-    	logger.info("Welcome Home /! The client locale is {}.", locale);
+    	logger.info("Welcome login /! The client locale is {}.", locale);
 
-        ModelAndView home = new ModelAndView("/public/home");
+        ModelAndView home = new ModelAndView("/public/login");
 
 
         return home;
