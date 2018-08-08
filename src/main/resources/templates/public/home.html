@@ -3,6 +3,21 @@
 
 	<head th:replace="fragmentos/head :: head-css">
 	
+<!-- 	  <style> -->
+/*     #ModalAtividade .modal { */
+/*       position: relative; */
+/*       top: auto; */
+/*       bottom: auto; */
+/*       right: auto; */
+/*       left: auto; */
+/*       display: block; */
+/*       z-index: 1; */
+/*     } */
+
+/*     #ModalAtividade .modal { */
+/*       background: transparent !important; */
+/*     } */
+<!--   </style> -->
 	
 	</head>
 		
@@ -68,12 +83,12 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3  th:text="${#lists.size(atividades)}">150</h3>
 
-              <p>Atendimentos</p>
+              <p>Atividades</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="fa fa-stethoscope"></i>
             </div>
             <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -83,14 +98,14 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3  th:text="${#lists.size(pacientes)}">53<sup style="font-size: 20px">%</sup></h3>
 
               <p>Pacientes</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="fa fa-wheelchair"></i>
             </div>
-            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">Mais info <i class="fa  fa-wheelchair"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -103,7 +118,7 @@
               <p>Agendamentos</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="fa fa-calendar-check-o"></i>
             </div>
             <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -113,12 +128,12 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3 th:text="${#lists.size(usuarios)}">65</h3>
 
               <p>Usuarios</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <i class="fa fa-user"></i>
             </div>
             <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -253,7 +268,10 @@
             <!-- /.box-header -->
             <div class="box-body">
               <ul class="todo-list">
-                <li>
+             
+             
+             
+                <li th:each="atividade: ${atividades}">
                   <!-- drag handle -->
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
@@ -262,117 +280,213 @@
                   <!-- checkbox -->
                   <input type="checkbox" value="" />
                   <!-- todo text -->
-                  <span class="text">Design a nice theme</span>
+                  <span class="text" th:text="${atividade.descricao}">Design a nice theme</span>
                   <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                  <small class="label label-danger" th:text="${atividade.status}"><i class="fa fa-clock-o"></i> 2 mins</small>
                   <!-- General tools such as edit or delete-->
                   <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
+                    <a th:href="@{/atividade/editar(id=${atividade.id})}"><i class="fa fa-edit"></i></a>
+                    <a th:href="@{/atividade/excluir(id=${atividade.id})}"><i class="fa fa-trash-o"></i></a>
                   </div>
                 </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" />
-                  <span class="text">Make the theme responsive</span>
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" />
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" />
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" />
-                  <span class="text">Check your messages and notifications</span>
-                  <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" />
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
+                
+                
+                
+<!--                 <li> -->
+<!--                       <span class="handle"> -->
+<!--                         <i class="fa fa-ellipsis-v"></i> -->
+<!--                         <i class="fa fa-ellipsis-v"></i> -->
+<!--                       </span> -->
+<!--                   <input type="checkbox" value="" /> -->
+<!--                   <span class="text">Make the theme responsive</span> -->
+<!--                   <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small> -->
+<!--                   <div class="tools"> -->
+<!--                     <i class="fa fa-edit"></i> -->
+<!--                     <i class="fa fa-trash-o"></i> -->
+<!--                   </div> -->
+<!--                 </li> -->
+<!--                 <li> -->
+<!--                       <span class="handle"> -->
+<!--                         <i class="fa fa-ellipsis-v"></i> -->
+<!--                         <i class="fa fa-ellipsis-v"></i> -->
+<!--                       </span> -->
+<!--                   <input type="checkbox" value="" /> -->
+<!--                   <span class="text">Let theme shine like a star</span> -->
+<!--                   <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small> -->
+<!--                   <div class="tools"> -->
+<!--                     <i class="fa fa-edit"></i> -->
+<!--                     <i class="fa fa-trash-o"></i> -->
+<!--                   </div> -->
+<!--                 </li> -->
+<!--                 <li> -->
+<!--                       <span class="handle"> -->
+<!--                         <i class="fa fa-ellipsis-v"></i> -->
+<!--                         <i class="fa fa-ellipsis-v"></i> -->
+<!--                       </span> -->
+<!--                   <input type="checkbox" value="" /> -->
+<!--                   <span class="text">Let theme shine like a star</span> -->
+<!--                   <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small> -->
+<!--                   <div class="tools"> -->
+<!--                     <i class="fa fa-edit"></i> -->
+<!--                     <i class="fa fa-trash-o"></i> -->
+<!--                   </div> -->
+<!--                 </li> -->
+<!--                 <li> -->
+<!--                       <span class="handle"> -->
+<!--                         <i class="fa fa-ellipsis-v"></i> -->
+<!--                         <i class="fa fa-ellipsis-v"></i> -->
+<!--                       </span> -->
+<!--                   <input type="checkbox" value="" /> -->
+<!--                   <span class="text">Check your messages and notifications</span> -->
+<!--                   <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small> -->
+<!--                   <div class="tools"> -->
+<!--                     <i class="fa fa-edit"></i> -->
+<!--                     <i class="fa fa-trash-o"></i> -->
+<!--                   </div> -->
+<!--                 </li> -->
+<!--                 <li> -->
+<!--                       <span class="handle"> -->
+<!--                         <i class="fa fa-ellipsis-v"></i> -->
+<!--                         <i class="fa fa-ellipsis-v"></i> -->
+<!--                       </span> -->
+<!--                   <input type="checkbox" value="" /> -->
+<!--                   <span class="text">Let theme shine like a star</span> -->
+<!--                   <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small> -->
+<!--                   <div class="tools"> -->
+<!--                     <i class="fa fa-edit"></i> -->
+<!--                     <i class="fa fa-trash-o"></i> -->
+<!--                   </div> -->
+<!--                 </li> -->
               </ul>
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix no-border">
-<!--               <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add Atividade</button> -->
-                <a href="#" data-toggle="modal" class="btn btn-default pull-right" data-target="#ModalAtividade" ><i class="fa fa-plus"></i>Add Atividade..</a>
+<!--               <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#myAtividade" ><i class="fa fa-plus"></i> Add Atividade</button> -->
+                <a href="#" data-toggle="modal" class="btn btn-default pull-right" data-target="#myAtividade" ><i class="fa fa-plus"></i>Add Atividade..</a>
               
             </div>
+            
+            <div class="modal fade" id="myAtividade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		
+		 <form th:action="@{/atividade/adicionar}" ModelAttribute="atividade" method="GET">
+		 
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<i class="material-icons">clear</i>
+				</button>
+				<h4 class="modal-title"> Nova Atividade</h4>
+			</div>
+			<div class="modal-body">
+
+			
+			
+			
+			<div class="form-group label-floating ">
+                  <div class="input-group">
+                    <i class="fa fa-pencil-square-o"></i>
+                  </div>
+							
+										<input id="descricao" name="descricao" class="form-control android" type="text"  th:value="${atividade.descricao}" placeholder="Digite a Descricao" />
+							
+			                </div>
+			                
+			                
+<!-- 			              </div> -->
+			              
+			    <div class="form-group label-floating ">
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar-check-o"></i>
+                  </div>
+                                    <input id="datainicio" class="form-control" name="datainicio" type="text" th:value="${atividade.datainicio}"
+                                           placeholder="Data Inicio"> </input>
+                                </div>
+                            </div>
+<!--                             </div> -->
+                           
+                                                        <div class="form-group label-floating ">
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa  fa-calendar-times-o"></i>
+                  </div>
+                                    <input id="datafim" class="form-control" name="datafim" type="text" th:value="${atividade.datafim}"
+                                           placeholder="Data Termino"> </input>
+                                </div>
+                            </div>
+                            
+                            
+          <div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-tag"></i>
+                  </div>
+
+                                    <select id="status" name="status" class="form-control">
+                                        <optgroup label="Escolha o Status">
+
+                                            <option th:value="${atividade.status}" th:selected="selected"
+                                            th:utext="${atividade.status}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="status: ${status}" th:value="${status}" th:utext="${status}"> status </option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            
+                          
+                          			<div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                  </div>
+							
+										<input id="usuario" name="usuario" class="form-control android" type="text"  th:value="${usuarioAtt.id}" placeholder="Usuario" />
+							
+			                </div>
+			              </div>  
+                            
+			
+			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			
+			
+			
+			
+			</div>
+			
+			
+			
+			
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-default btn-simple">Salvar</button>
+				<button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Fechar</button>
+			</div>
+			
+			</form>
+		</div>
+	</div>
+</div>
+        
+        
+        
+        
           </div>
           
           
           
           
-                <div id="ModalAtividade" class="example-modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Default Modal</h4>
-              </div>
-              <div class="modal-body">
-                <p>One fine body&hellip;</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-      </div>
-      <!-- /.example-modal -->
+
           
           
           

@@ -1,5 +1,7 @@
 package com.tecsoluction.agenda.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -17,7 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tecsoluction.agenda.entidade.Atividade;
+import com.tecsoluction.agenda.entidade.Paciente;
+import com.tecsoluction.agenda.entidade.Usuario;
+import com.tecsoluction.agenda.servico.AtividadeServicoImpl;
+import com.tecsoluction.agenda.servico.PacienteServicoImpl;
 import com.tecsoluction.agenda.servico.UsuarioServicoImpl;
+import com.tecsoluction.agenda.util.StatusAtividade;
 
 
 @Controller
@@ -28,20 +36,64 @@ public class HomeController {
 	@Autowired
 	private  UsuarioServicoImpl usuarioService = new UsuarioServicoImpl();
 	
+	@Autowired
+	private  AtividadeServicoImpl atividadeService = new AtividadeServicoImpl();
+	
+	
+	@Autowired
+	private  PacienteServicoImpl pacienteService = new PacienteServicoImpl();
+	
     @Autowired 
     private JavaMailSender mailSender;
+    
+    private StatusAtividade status[];
+    
 	
+    private List<Atividade> atividades = new ArrayList<Atividade>();
+    
+    
+    private List<Usuario> usuarios = new ArrayList<Usuario>();
+    
+    private List<Paciente> pacientes = new ArrayList<Paciente>();
+    
+    
+    private int qtdatividade;
+ 
+    private int qtdusuarios;
+    
+    private int qtdpacientes;
 
 	
 	  @ModelAttribute
 	    public void addAttributes(Model model) {
+		  
+		  atividades = atividadeService.findAll();
+		  
+		  usuarios = usuarioService.findAll();
+		  
+		  pacientes = pacienteService.findAll();
+		  
+		  qtdatividade = atividades.size();
+		  
+		  qtdusuarios = usuarios.size();
+		  
+		  qtdpacientes = pacientes.size();
+		  
 		  
 //		  	List<Produto> produtos = produtoService.findAll();
 //
 //	        List<Categoria> categorias = categoriaService.findAll();
 	        
 //
-//	        model.addAttribute("categorias", categorias);
+	        model.addAttribute("atividades", atividades);
+	        model.addAttribute("usuarios", usuarios);
+	        model.addAttribute("pacientes", pacientes);
+	        model.addAttribute("qtdatividade", qtdatividade);
+	        model.addAttribute("qtdusuarios", qtdusuarios);
+	        model.addAttribute("qtdpacientes", qtdpacientes);
+	        
+	        
+	        
 //	        model.addAttribute("produtos", produtos);
 
 
@@ -52,9 +104,20 @@ public class HomeController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView Home(Locale locale, Model model) {
        
+    	
+    	
     	logger.info("Welcome Home /home! The client locale is {}.", locale);
 
         ModelAndView home = new ModelAndView("/public/home");
+        
+        
+         Atividade atividade = new Atividade();
+         
+         status = StatusAtividade.values();
+         
+         home.addObject("atividade", atividade);
+         home.addObject("status", status);
+
 
 
         return home;

@@ -1,14 +1,12 @@
 package com.tecsoluction.agenda.util;
 
-public enum PlanoSaude {
+public enum StatusAtividade {
 	
 	
-	BRADESCO,CAMED,HAPVIDA;
+	ABERTA,PENDENTE,FINALIZADA;
 	
-	private PlanoSaude() {
+	private StatusAtividade() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 }

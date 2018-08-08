@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -15,6 +16,7 @@ import org.hibernate.annotations.ManyToAny;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.tecsoluction.agenda.framework.BaseEntity;
+import com.tecsoluction.agenda.util.StatusAtividade;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -45,10 +47,10 @@ public class Atividade extends BaseEntity implements Serializable {
 //    @NotBlank(message = "Numero do Banco  obrigatorio")
     private Date datafim;
     
-//    @Enumerated(EnumType.STRING)
-//    private StatusAtividade status;
+    @Enumerated(EnumType.STRING)
+    private StatusAtividade status;
     
-    @ManyToOne
+    @ManyToOne(targetEntity=Usuario.class,fetch=FetchType.EAGER)
     private Usuario usuario;
     
     

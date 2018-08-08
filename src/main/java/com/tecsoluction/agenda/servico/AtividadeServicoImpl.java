@@ -49,7 +49,7 @@ public class AtividadeServicoImpl extends AbstractEntityService<Atividade> {
 	@Override
 	protected JpaRepository<Atividade, UUID> getDao() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao;
 	}
 
 
@@ -65,7 +65,7 @@ public class AtividadeServicoImpl extends AbstractEntityService<Atividade> {
 	@Override
 	protected String getIdEntity(Atividade entity) {
 		// TODO Auto-generated method stub
-		return null;
+		return entity.getId().toString();
 	}
 
 

@@ -67,33 +67,51 @@ public class AtividadeController extends AbstractController<Atividade> {
     	
 //    	Genero[] generos = Genero.values();
 
-        Usuario usuario = new Usuario();
+//        Usuario usuario = new Usuario();
 //        usuario.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 //        usuario = ususervice.findByUsername(usuario.getUsername());
 
                 
 //        model.addAttribute("usuarioAtt", usuario);
 //        model.addAttribute("generos", generos);
-        model.addAttribute("usuario", usuario);
+//        model.addAttribute("usuario", usuario);
 //        model.addAttribute("roles", roles);
 
         
 
     }
     
-//    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-//    public ModelAndView profileUsuario(HttpServletRequest request) {
-//
+    @RequestMapping(value = "/adicionar", method = RequestMethod.GET)
+    public ModelAndView AdicionarAtividades(HttpServletRequest request,@ModelAttribute Atividade model) {
+
 //        UUID idf = UUID.fromString(request.getParameter("id"));
-//
-//        ModelAndView profileusuario = new ModelAndView("/public/profile");
-//
+
+//        ModelAndView home = new ModelAndView("/public/home");
+
 //        Usuario usuario = getservice().findOne(idf);
-//
+
 //        profileusuario.addObject("usuario", usuario);
-//
-//        return profileusuario;
-//    }
+        
+        getservice().save(model);
+
+        return new ModelAndView("redirect:/home");
+    }
+    
+    @RequestMapping(value = "/excluir", method = RequestMethod.GET)
+    public ModelAndView ExcluirAtividades(HttpServletRequest request,@ModelAttribute Atividade model) {
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+//        ModelAndView home = new ModelAndView("/public/home");
+
+        Atividade atividade = getservice().findOne(idf);
+
+//        profileusuario.addObject("usuario", usuario);
+        
+        getservice().delete(atividade.getId());
+
+        return new ModelAndView("redirect:/home");
+    }
 //    
 //    
 //    

@@ -10,6 +10,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -51,6 +52,10 @@ public class Usuario  extends BaseEntity implements Serializable {
             joinColumns = @JoinColumn(name = "idusuario"),
             inverseJoinColumns = @JoinColumn(name = "idrole"))
 	 private Set<Role> roles;
+    
+    
+    @OneToMany(mappedBy="usuario",fetch=FetchType.EAGER)
+    private Set<Atividade> atividades;
     
 //    @OneToOne
 //    @JoinColumn(name="perfil_id")
