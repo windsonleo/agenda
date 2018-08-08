@@ -25,18 +25,18 @@ public class DataSourceConf {
     public DataSource dataSource() {
            
 //        local
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/agenda");
-        dataSource.setUsername("postgres");        
-        dataSource.setPassword("");
-		
-		//heroku
 //        DriverManagerDataSource dataSource = new DriverManagerDataSource();
 //        dataSource.setDriverClassName("org.postgresql.Driver");
-//        dataSource.setUrl("jdbc:postgresql://ec2-54-83-58-222.compute-1.amazonaws.com:5432/d6h7iq864gjrq8");
-//        dataSource.setUsername("mzwygaiobhzfzj");        
-//        dataSource.setPassword("bf99f1c0dc67217287405506a1bdca7e539fc70c8b1cc6f4e942e0b59900968a");
+//        dataSource.setUrl("jdbc:postgresql://localhost:5432/agenda");
+//        dataSource.setUsername("postgres");        
+//        dataSource.setPassword("");
+		
+		//heroku
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://ec2-107-21-98-165.compute-1.amazonaws.com:5432/dfgl4a8isctde5");
+        dataSource.setUsername("bqjzlolhzrclji");        
+        dataSource.setPassword("c3759f8eefef3cead926283838213cba78beb65cf84343d516e8f7debb0c2289");
 
     	return dataSource;
     }
