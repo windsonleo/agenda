@@ -63,7 +63,7 @@ public class Paciente  extends BaseEntity implements Serializable {
 	private String cpf;
 	
 	private int frequenciasemanal;
-	
+	 @JsonIgnore
 	@OneToOne(targetEntity=Endereco.class)
 	private Endereco endereco;
 	

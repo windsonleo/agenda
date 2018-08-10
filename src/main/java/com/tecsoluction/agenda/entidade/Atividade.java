@@ -15,6 +15,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.ManyToAny;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tecsoluction.agenda.framework.BaseEntity;
 import com.tecsoluction.agenda.util.StatusAtividade;
 
@@ -50,6 +51,7 @@ public class Atividade extends BaseEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private StatusAtividade status;
     
+    @JsonIgnore
     @ManyToOne(targetEntity=Usuario.class,fetch=FetchType.EAGER)
     private Usuario usuario;
     

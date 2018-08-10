@@ -53,7 +53,7 @@ public class Usuario  extends BaseEntity implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "idrole"))
 	 private Set<Role> roles;
     
-    
+    @JsonIgnore
     @OneToMany(mappedBy="usuario",fetch=FetchType.EAGER)
     private Set<Atividade> atividades;
     
