@@ -308,15 +308,18 @@
 			</div>
 			
 			<div class="col-md-4" style="margin:5px;">
+			
+			<form th:action="@{/usuario/salvarfotousuario}"  enctype="multipart/form-data"  method="post">
+			
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-aqua-active">
-              <h3 class="widget-user-username">Thanh Nguyen</h3>
-              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+              <h3 class="widget-user-username" th:text="${usuario.email}">Thanh Nguyen</h3>
+              <h5 class="widget-user-desc"  th:text="${usuario.roles}">Founder &amp; CEO</h5>
             </div>
             <div class="widget-user-image">
-              <img class="img-circle" th:src="@{/img/avatar.jpg}" alt="User Avatar" />
+              <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar" />
             </div>
             <div class="box-footer">
               <div class="row">
@@ -338,9 +341,22 @@
                 <!-- /.col -->
                 <div class="col-sm-12">
                   <div class="description-block">
-                    <h5 class="description-header"><button class="btn btn-block btn-primary btn-sm">Add foto
-                    <div class="ripple-container"></div>
-                    </button></h5>
+                  
+                                  <div class="form-group">
+                  <label for="file">File input</label>
+                  <input type="text" readonly="" class="form-control" placeholder="Browse..." th:value="${filename}" />
+                  <input type="file" id="file" multiple="multiple" name="file" />
+
+                  <p class="help-block">Example block-level help text here.</p>
+                </div>
+                   
+                    <h5 class="description-header">
+                    <button type="submit" class="btn btn-block btn-primary btn-sm">Add foto
+                    	<div class="ripple-container"></div>
+                    </button>
+                    
+                    </h5>
+                    
                     <span class="description-text"><i class="fa fa-photo"></i></span>
                   </div>
                   <!-- /.description-block -->
@@ -351,6 +367,8 @@
             </div>
           </div>
           <!-- /.widget-user -->
+          
+          </form>
         </div>
 			
 			

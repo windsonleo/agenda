@@ -1,10 +1,13 @@
 package com.tecsoluction.agenda.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +18,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.tecsoluction.agenda.entidade.Role;
 import com.tecsoluction.agenda.entidade.Usuario;
 import com.tecsoluction.agenda.framework.AbstractController;
@@ -127,6 +131,62 @@ public class UsuarioController extends AbstractController<Usuario> {
 
         return new ModelAndView("forward:/login");
     }
+    
+    
+    // verificar tmanho do arquivo e se o arquivo ja existe
+    @RequestMapping(value = "salvarfotousuario", method = RequestMethod.POST)
+    public ModelAndView SalvarFotoProduto2(@RequestParam ("file") MultipartFile file, HttpSession session, HttpServletRequest request,
+                             Model model) {
+
+        String mensagem = "Sucesso ao salvar foto";
+        
+        String erros = "Falha ao salvar foto";
+        
+//        ModelAndView cadastro = new ModelAndView("/private/produto/cadastro/cadastroproduto");
+
+        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario");
+        
+        String filename = file.getOriginalFilename();
+        
+        String caminho = path + "\\" + filename;
+        
+
+
+        System.out.println(" path = "  + path );
+
+        System.out.println(" caminho" + caminho);
+//        
+//        System.out.println("request D" + d);
+
+        try {
+
+            byte barr[] = file.getBytes();
+
+            BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(caminho));
+            bout.write(barr);
+            bout.flush();
+            bout.close();
+
+            model.addAttribute("mensagem", mensagem);
+            model.addAttribute("filename", filename);
+            model.addAttribute("acao", "add");
+
+        } catch (Exception e) {
+
+            System.out.println(e);
+
+            model.addAttribute("erros", erros + e);
+            model.addAttribute("acao", "add");
+
+        }
+
+        Usuario produtocomfoto = new Usuario();
+        produtocomfoto.setFoto(filename);
+        
+       return new ModelAndView("redirect:/usuario/cadastro").addObject("usuario", produtocomfoto);
+
+    }
+    
 
 	@Override
 	protected UsuarioServicoImpl getservice() {
