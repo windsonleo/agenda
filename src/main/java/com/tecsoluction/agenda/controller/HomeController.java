@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.agenda.entidade.Atividade;
+import com.tecsoluction.agenda.entidade.Evento;
 import com.tecsoluction.agenda.entidade.Paciente;
 import com.tecsoluction.agenda.entidade.Usuario;
 import com.tecsoluction.agenda.servico.AtividadeServicoImpl;
+import com.tecsoluction.agenda.servico.EventoServicoImpl;
 import com.tecsoluction.agenda.servico.PacienteServicoImpl;
 import com.tecsoluction.agenda.servico.UsuarioServicoImpl;
 import com.tecsoluction.agenda.util.StatusAtividade;
@@ -39,6 +41,9 @@ public class HomeController {
 	@Autowired
 	private  AtividadeServicoImpl atividadeService = new AtividadeServicoImpl();
 	
+	@Autowired
+	private EventoServicoImpl eventoService = new EventoServicoImpl();
+	
 	
 	@Autowired
 	private  PacienteServicoImpl pacienteService = new PacienteServicoImpl();
@@ -50,6 +55,8 @@ public class HomeController {
     
 	
     private List<Atividade> atividades = new ArrayList<Atividade>();
+    
+    private List<Evento> eventos = new ArrayList<Evento>();
     
     
     private List<Usuario> usuarios = new ArrayList<Usuario>();
@@ -73,6 +80,10 @@ public class HomeController {
 		  
 		  pacientes = pacienteService.findAll();
 		  
+		  eventos = eventoService.findAll();
+		  
+		  
+		  
 		  qtdatividade = atividades.size();
 		  
 		  qtdusuarios = usuarios.size();
@@ -91,6 +102,7 @@ public class HomeController {
 	        model.addAttribute("qtdatividade", qtdatividade);
 	        model.addAttribute("qtdusuarios", qtdusuarios);
 	        model.addAttribute("qtdpacientes", qtdpacientes);
+	        model.addAttribute("eventos", eventos);
 	        
 	        
 	        

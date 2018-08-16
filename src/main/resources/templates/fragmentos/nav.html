@@ -43,16 +43,16 @@
       <ul class="sidebar-menu">
         <li class="header">NAVEGACAO PRINCIPAL</li>
         <li class="treeview">
-          <a href="#">
+          <a th:href="@{/home}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a th:href="@{/home}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+<!--           <ul class="treeview-menu"> -->
+<!--             <li><a th:href="@{/home}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li> -->
 <!--             <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
-          </ul>
+<!--           </ul> -->
         </li>
 <!--         <li class="treeview"> -->
 <!--           <a href="#"> -->
@@ -78,9 +78,9 @@
 <!--           </a> -->
 <!--         </li> -->
         <li class="treeview">
-          <a th:href="@{/calendario}">
+          <a th:href="@{/evento/cadastro}">
             <i class="fa fa-calendar-check-o"></i>
-            <span>Calendario</span>
+            <span>Evento</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

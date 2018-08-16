@@ -134,6 +134,10 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
        .ignoring()
        .antMatchers("*/sass/**");
        
+       web
+       .ignoring()
+       .antMatchers("*/fonts/**");
+       
        
 
 	}

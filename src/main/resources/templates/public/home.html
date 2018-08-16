@@ -3,21 +3,7 @@
 
 	<head th:replace="fragmentos/head :: head-css">
 	
-<!-- 	  <style> -->
-/*     #ModalAtividade .modal { */
-/*       position: relative; */
-/*       top: auto; */
-/*       bottom: auto; */
-/*       right: auto; */
-/*       left: auto; */
-/*       display: block; */
-/*       z-index: 1; */
-/*     } */
 
-/*     #ModalAtividade .modal { */
-/*       background: transparent !important; */
-/*     } */
-<!--   </style> -->
 	
 	</head>
 		
@@ -113,9 +99,9 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3 th:text="${#lists.size(eventos)}">44</h3>
 
-              <p>Agendamentos</p>
+              <p>Eventos</p>
             </div>
             <div class="icon">
               <i class="fa fa-calendar-check-o"></i>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tecsoluction.agenda.entidade.Evento;
@@ -35,7 +36,7 @@ public class EventoControllerRest extends AbstractRestController<Evento> {
     }
     
     @RequestMapping(value = "/listar/", method = RequestMethod.GET)
-    public List<Evento> listarEventos() {
+    public @ResponseBody List<Evento> listarEventos() {
 
         return getservice().findAll();
 

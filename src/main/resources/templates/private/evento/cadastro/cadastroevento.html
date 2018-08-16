@@ -1,0 +1,445 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="fragmentos/head :: head-css">
+	
+		<link rel="stylesheet" media="print"
+	href="resources/static/css/fullcalendar.print.css"
+	th:href="@{/css/fullcalendar.print.css}" type="text/css" />
+	
+	</head>
+		
+		<title>Calendario</title>
+
+			<body  class="hold-transition skin-blue sidebar-mini">
+			
+			<div class="wrapper">
+
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
+				
+		  <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Calendario
+        <small>Agenda</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Calendario</a></li>
+        <li class="active">Agenda</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h4 class="box-title">Eventos</h4>
+            </div>
+            <div class="box-body">
+              <!-- the events -->
+              <div id="external-events">
+               
+<!--                 <div th:each="evento: ${eventos}" th:class="${evento.backgroundColor=='rgb(221, 75, 57)'} ? 'external-event bg-red' : ''" th:text="${evento.title}" th:remove>Almoco</div> -->
+<!--                 											${evento.backgroundColor=='rgb(0, 192, 239)'} ? 'external-event bg-aqua' : '' " -->
+                											
+                		<div th:each="evento: ${eventos}" class="external-event" th:style="|border-color:${evento.borderColor};background-color:${evento.backgroundColor}|" th:text="${evento.title}">Almoco</div> 								
+                											 
+<!--                 <div class="external-event bg-yellow">Casa</div> -->
+<!--                 <div class="external-event bg-aqua">Reuniao</div> -->
+<!--                 <div class="external-event bg-light-blue">Consulta</div> -->
+<!--                 <div class="external-event bg-red">Escrittorio</div> -->
+                <div class="checkbox">
+                  <label for="drop-remove">
+                    <input type="checkbox" id="drop-remove" />
+                    remover apos arrastar
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Criar Evento</h3>
+            </div>
+            <div class="box-body">
+            
+            <form th:action="@{/evento/adicionar}" ModelAttribute="evento" method="POST">
+            
+              <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
+                <ul class="fc-color-picker" id="color-chooser">
+                  <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-green" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-red" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
+                </ul>
+              </div>
+              <!-- /btn-group -->
+              <div class="input-group">
+                <input id="title" type="text" name="title" th:value="${evento.title}" class="form-control" placeholder="Titulo do Evento" />
+                <input id="start" type="text" name="start" th:value="${evento.start}" class="form-control" placeholder="Data Inicio" hidden="true" style="display:none;" />
+                <input id="end" type="text" name="end" th:value="${evento.end}" class="form-control" placeholder="Data Fim"  hidden="true" style="display:none;" />
+
+                <input id="backgroundColor" type="text" name="backgroundColor" th:value="${evento.backgroundColor}" class="form-control" placeholder="backgroundColor"  hidden="true" style="display:none;"/>
+                <input id="borderColor" type="text" name="borderColor" th:value="${evento.borderColor}" class="form-control" placeholder="borderColor"  hidden="true" style="display:none;"/>
+
+
+
+                <div class="input-group-btn">
+                  <input id="add-new-event" type="submit" class="btn btn-primary btn-flat">Add</input>
+                </div>
+                <!-- /btn-group -->
+              </div>
+              <!-- /input-group -->
+              
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="box box-primary">
+            <div class="box-body no-padding">
+              <!-- THE CALENDAR -->
+              <div id="calendar"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  
+
+  <div id='script-warning' hidden="true">
+    This page should be running from a webserver, to allow fetching from the <code>json/</code> directory.
+  </div>
+
+		<script src="resources/static/js/jquery-2.2.3.min.js"
+			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script>
+			
+											<script src="resources/static/js/bootstrap.min.js"
+			th:src="@{/js/bootstrap.min.js}" th:inline="javascript" ></script>
+			
+						<script src="resources/static/js/material.min.js"
+			th:src="@{/js/material.min.js}" th:inline="javascript" ></script>
+			
+									<script src="resources/static/js/ripples.min.js"
+			th:src="@{/js/ripples.min.js}" th:inline="javascript" ></script>
+			
+			
+			<script type="text/javascript">
+    $.material.init();
+</script>
+
+								<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"
+			th:src="@{https://code.jquery.com/ui/1.11.4/jquery-ui.min.js}" th:inline="javascript" ></script>
+			
+									<script src="resources/static/js/jquery.slimscroll.min.js"
+			th:src="@{/js/jquery.slimscroll.min.js}" th:inline="javascript" ></script>
+	
+			
+						<script src="resources/static/js/fastclick.js"
+			th:src="@{/js/fastclick.js}" th:inline="javascript" ></script>
+			
+					<script src="resources/static/js/app.min.js"
+		 th:src="@{/js/app.min.js}"  th:inline="javascript"></script>
+		 
+		 				<script src="resources/static/js/demo.js"
+			th:src="@{/js/demo.js}"></script>
+	
+	
+							<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"
+			th:src="@{https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js}" th:inline="javascript" ></script>
+	
+	<script src="resources/static/js/fullcalendar.min.js"
+			th:src="@{/js/fullcalendar.min.js}" th:inline="javascript" ></script>
+			
+				<script src="resources/static/js/pt-br.js"
+			th:src="@{/js/pt-br.js}" th:inline="javascript" ></script>
+			
+			
+	
+	<script type="text/javascript" th:inline="javascript"> 
+		
+	
+	  <!-- Page specific script -->
+	  
+	  /*<![CDATA[*/
+		  
+$(function () {
+
+    /* initialize the external events
+     -----------------------------------------------------------------*/
+    function ini_events(ele) {
+      ele.each(function () {
+    	  
+    	  
+    	  
+
+        // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+        // it doesn't need to have a start or end
+        var eventObject = {
+          title: $.trim($(this).text()) // use the element's text as the event title
+        };
+
+        // store the Event Object in the DOM element so we can get to it later
+        $(this).data('eventObject', eventObject);
+
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+          zIndex: 1070,
+          revert: true, // will cause the event to go back to its
+          revertDuration: 0  //  original position after the drag
+        });
+
+      });
+    }
+
+    ini_events($('#external-events div.external-event'));
+
+    /* initialize the calendar
+     -----------------------------------------------------------------*/
+     
+//      function Refresh() {
+     	
+//      	$.ajax({
+//     		url: "/agenda/evento/listar/",
+// //      		url: "/chart/vendasDias/",
+//      		success: function(data) {
+//      			//add new ajax data to existing array
+// //     			activity_array.labels['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB', 'DOM'],
+//      			activity_array.push(parseInt(data));
+//      			//remove first array entry
+//      			activity_array.splice(1,1);
+//      			//update data object with new array
+//      			var data = {
+     				
+//      					title:[activity_array],
+//      					series: [activity_array]
+//      			};
+//      			//update and refresh chart
+//      			dailySalesChart.update(data);
+//      		}
+//      	});
+     
+     
+     
+     
+     
+    //Date for the calendar events (dummy data)
+    var date = new Date();
+    var d = date.getDate(),
+        m = date.getMonth(),
+        y = date.getFullYear();
+    
+	var dataAtual = y +'-'+m+'-'+d;
+
+    
+    
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      buttonText: {
+        today: 'hoje',
+        month: 'mes',
+        week: 'semana',
+        day: 'dia'
+      },
+      //Random default events
+//       events: [
+    	  
+//           {
+//               title: 'All Day Event',
+//               start: new Date(y, m, 1),
+//              backgroundColor: "#f56954", //red
+//               borderColor: "#f56954" //red   
+               
+//                },
+    	  
+//        {
+//        title: 'Long Event',
+//        start: new Date(y, m, d - 5),
+//        end: new Date(y, m, d - 2),
+//     backgroundColor: "#f39c12", //yellow
+//     borderColor: "#f39c12" //yellow
+
+
+// 		{
+//     	  url:"/agenda/evento/listar/",
+    	  
+//     	  error: function() 
+//           {
+//               alert("error");
+//           },
+//           success: function()
+//           {
+//               console.log("successfully loaded");
+//           }
+       
+
+//      }
+        
+       
+        events: { // you can also specify a plain string like 'json/events.json'
+//         url: '/agenda/evento/listar/',
+ 		url: '/evento/listar/',
+        error: function() {
+          $('#script-warning').show();
+        }
+      },
+    	  
+    	  
+
+
+// 	defaultDate: dataAtual,		
+      editable: true,
+      droppable: true, 
+		eventLimit: true,
+		lang:'pt-br',
+		
+		// this allows things to be dropped onto the calendar !!!
+      
+      
+      drop: function (date, allDay) { // this function is called when something is dropped
+
+        // retrieve the dropped element's stored Event Object
+        var originalEventObject = $(this).data('eventObject');
+
+        // we need to copy it, so that multiple events don't have a reference to the same object
+        var copiedEventObject = $.extend({}, originalEventObject);
+
+        // assign it the date that was reported
+        copiedEventObject.start = date;
+        copiedEventObject.allDay = allDay;
+        copiedEventObject.backgroundColor = $(this).css("background-color");
+        copiedEventObject.borderColor = $(this).css("border-color");
+
+        // render the event on the calendar
+        // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+        // is the "remove after drop" checkbox checked?
+        if ($('#drop-remove').is(':checked')) {
+          // if so, remove the element from the "Draggable Events" list
+          $(this).remove();
+        }
+
+      }
+    });
+
+    /* ADDING EVENTS */
+    var currColor = "#3c8dbc"; //Red by default
+    //Color chooser button
+    var colorChooser = $("#color-chooser-btn");
+    $("#color-chooser > li > a").click(function (e) {
+      e.preventDefault();
+      //Save color
+      currColor = $(this).css("color");
+      //Add color effect to button
+      $('#add-new-event').css({"background-color": currColor, "border-color": currColor});
+    });
+   
+    
+    $("#add-new-event").click(function (e) {
+//       e.preventDefault();
+      //Get value and make sure it is not null
+      var val = $("#title").val();
+      if (val.length == 0) {
+        return;
+      }
+      
+      $("#backgroundColor").val(currColor);
+      $("#borderColor").val(currColor);
+      
+//       $('.external-event bg-green').css({"background-color": currColor, "border-color": currColor});
+      
+      
+   
+
+      //Create events
+      var event = $("<div />");
+      event.css({"background-color": currColor, "border-color": currColor, "color": "#fff"}).addClass("external-event");
+      event.html(val);
+      $('#external-events').prepend(event);
+
+      //Add draggable funtionality
+      ini_events(event);
+
+      //Remove event from text input
+//       $("#titulo").val("");
+   
+    });
+    
+    
+//     events: function (start, end, callback) {
+//         $.ajax({
+//             type: "GET",    //WebMethods will not allow GET
+//             url: 'http://localhost:8080/agenda/evento/listar/',   //url of a webmethod - example below
+//             contentType: "application/json; charset=utf-8",
+//             dataType: "json",
+//             success: function (doc) {
+//                 var events = [];   //javascript event object created here
+//                 var obj = $.parseJSON(doc.d);  //.net returns json wrapped in "d"
+
+
+
+//                 for(var i=0;i<obj.length;i++){
+//                     console.log(obj[i]['id']);
+//                     console.log(obj[i]['title']);
+//                     console.log(obj[i]['start']);
+//                     console.log(obj[i]['end']);
+
+//                     addCalanderEvent(obj[i]['id'],obj[i]['start'],obj[i]['end'],obj[i]['title']);
+
+//                 }
+
+
+
+//                 //callback(events);
+//             }
+//         });
+//     }
+  
+  });
+	        
+	        /*]]>*/
+
+	    </script>
+	
+  
+		
+		</div>	
+		
+
+</body>
+
+			
+</html>
+
