@@ -245,7 +245,7 @@
 		
 				 	 
 						
-							<button type="submit" class="btn btn-success">Salvar</button>
+							<button type="submit"  th:value="${acao}" class="btn btn-success">Salvar</button>
 							<a href='javascript:history.back(1)' class="btn btn-default">Voltar</a>
 						
 						</form>
@@ -258,7 +258,108 @@
 				
 <!-- 				<div th:replace="fragmentos/footer :: script" style="display:none;"></div> -->
 
-	<script src="resources/static/js/jquery-2.2.3.min.js"
+	
+			
+			</div>
+			
+<!-- 			</div> -->
+			
+			</div>
+			
+			
+	
+			
+			
+			</div>
+			
+			<div class="col-md-4" style="margin:5px;">
+			
+			<form th:action="@{/usuario/salvarfotousuario}" ModelAttribute="usuario"  enctype="multipart/form-data"  method="post">
+			
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username" th:text="${usuario.email}">Thanh Nguyen</h3>
+              <h5 class="widget-user-desc"  th:text="${usuario.roles}">Founder &amp; CEO</h5>
+            </div>
+            
+            <div class="widget-user-image" th:if="${filename}">
+              <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar file if"/>
+            </div>
+            
+<!--                         <div class="widget-user-image" th:unless="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/avatar2.png}" alt="User Avatar file unless"/> -->
+<!--             </div> -->
+            
+            
+            
+                       <div class="widget-user-image" th:if="${usuario.foto}">
+              <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}" alt="User Avatar usu if"/>
+            </div>
+            
+                                   <div class="widget-user-image" th:unless="${usuario.foto}">
+              <img class="img-circle" th:src="@{/img/usuario/avatar2.png}" alt="User Avatar usu unless"/>
+            </div>
+            
+            
+            <div class="box-footer">
+              <div class="row">
+<!--                 <div class="col-sm-4 border-right"> -->
+<!--                   <div class="description-block"> -->
+<!--                     <h5 class="description-header">3,200</h5> -->
+<!--                     <span class="description-text">SALES</span> -->
+<!--                   </div> -->
+<!--                   /.description-block -->
+<!--                 </div> -->
+                <!-- /.col -->
+<!--                 <div class="col-sm-4 border-right"> -->
+<!--                   <div class="description-block"> -->
+<!--                     <h5 class="description-header">13,000</h5> -->
+<!--                     <span class="description-text">FOLLOWERS</span> -->
+<!--                   </div> -->
+<!--                   /.description-block -->
+<!--                 </div> -->
+                <!-- /.col -->
+                <div class="col-sm-12">
+                  <div class="description-block">
+                  
+                 <div class="form-group">
+                  <label for="file">File input</label>
+                  <input type="text" readonly="" class="form-control" th:value="${filename}" th:placeholder="${filename}" />
+                  <input type="file" id="file" multiple="multiple" name="file" />
+
+                  <p class="help-block">Example block-level help text here.</p>
+                </div>
+                   
+                    <h5 class="description-header">
+                    <button type="submit" class="btn btn-block btn-primary btn-sm">Add foto
+                    	<div class="ripple-container"></div>
+                    </button>
+                    
+                    </h5>
+                    
+                    <span class="description-text"><i class="fa fa-photo"></i></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+          
+          </form>
+        </div>
+			
+			
+			
+			</div>
+			</div>
+			</div>
+			
+			<script src="resources/static/js/jquery-2.2.3.min.js"
 			th:src="@{/js/jquery-2.2.3.min.js}" th:inline="javascript" ></script>
 			
 											<script src="resources/static/js/bootstrap.min.js"
@@ -294,88 +395,19 @@
 		 				<script src="resources/static/js/demo.js"
 			th:src="@{/js/demo.js}"></script>
 			
+						<script type="text/javascript">
 			
-			</div>
-			
-<!-- 			</div> -->
-			
-			</div>
-			
-			
-	
-			
-			
-			</div>
-			
-			<div class="col-md-4" style="margin:5px;">
-			
-			<form th:action="@{/usuario/salvarfotousuario}"  enctype="multipart/form-data"  method="post">
-			
-          <!-- Widget: user widget style 1 -->
-          <div class="box box-widget widget-user">
-            <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-aqua-active">
-              <h3 class="widget-user-username" th:text="${usuario.email}">Thanh Nguyen</h3>
-              <h5 class="widget-user-desc"  th:text="${usuario.roles}">Founder &amp; CEO</h5>
-            </div>
-            <div class="widget-user-image">
-              <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar" />
-            </div>
-            <div class="box-footer">
-              <div class="row">
-<!--                 <div class="col-sm-4 border-right"> -->
-<!--                   <div class="description-block"> -->
-<!--                     <h5 class="description-header">3,200</h5> -->
-<!--                     <span class="description-text">SALES</span> -->
-<!--                   </div> -->
-<!--                   /.description-block -->
-<!--                 </div> -->
-                <!-- /.col -->
-<!--                 <div class="col-sm-4 border-right"> -->
-<!--                   <div class="description-block"> -->
-<!--                     <h5 class="description-header">13,000</h5> -->
-<!--                     <span class="description-text">FOLLOWERS</span> -->
-<!--                   </div> -->
-<!--                   /.description-block -->
-<!--                 </div> -->
-                <!-- /.col -->
-                <div class="col-sm-12">
-                  <div class="description-block">
-                  
-                                  <div class="form-group">
-                  <label for="file">File input</label>
-                  <input type="text" readonly="" class="form-control" placeholder="Browse..." th:value="${filename}" />
-                  <input type="file" id="file" multiple="multiple" name="file" />
-
-                  <p class="help-block">Example block-level help text here.</p>
-                </div>
-                   
-                    <h5 class="description-header">
-                    <button type="submit" class="btn btn-block btn-primary btn-sm">Add foto
-                    	<div class="ripple-container"></div>
-                    </button>
-                    
-                    </h5>
-                    
-                    <span class="description-text"><i class="fa fa-photo"></i></span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <!-- /.widget-user -->
-          
-          </form>
-        </div>
+		     $(function () {
+	    	
+		     $('#datepicker').datepicker({
+		         autoclose: true
+		       });
+		    
+		     });
 			
 			
+			</script>
 			
-			</div>
-			</div>
-			</div>
 			
 			</body>
 			

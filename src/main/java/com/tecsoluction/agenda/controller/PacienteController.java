@@ -1,6 +1,10 @@
 package com.tecsoluction.agenda.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +14,10 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.agenda.entidade.Paciente;
 import com.tecsoluction.agenda.framework.AbstractController;
@@ -34,6 +42,8 @@ public class PacienteController extends AbstractController<Paciente> {
 	 private TipoTerapia[] tipo;
 	 
 	 private PlanoSaude[] planossaude;
+	 
+	 private Paciente paciente= new Paciente();
 	
 	
     public PacienteController(PacienteServicoImpl usuimpl) {
@@ -63,8 +73,10 @@ public class PacienteController extends AbstractController<Paciente> {
     	tipo = TipoTerapia.values();
     	
     	planossaude = PlanoSaude.values();
+    	
+    	
 
-        Paciente paciente = new Paciente();
+//        Paciente paciente = new Paciente();
 //        paciente.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 //        paciente = ususervice.findByUsername(paciente.getUsername());
 
@@ -126,6 +138,64 @@ public class PacienteController extends AbstractController<Paciente> {
 //
 //        return new ModelAndView("forward:/login");
 //    }
+    
+    // verificar tmanho do arquivo e se o arquivo ja existe
+    @RequestMapping(value = "salvarfotopaciente", method = RequestMethod.POST)
+    public ModelAndView SalvarFotoPaciente(@RequestParam ("file") MultipartFile file, HttpSession session, HttpServletRequest request,
+                             Model model) {
+
+        String sucesso = "Sucesso ao salvar foto";
+        
+        String erros = "Falha ao salvar foto";
+        
+//        ModelAndView cadastro = new ModelAndView("/private/produto/cadastro/cadastroproduto");
+
+        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/paciente");
+        
+        String filename = file.getOriginalFilename();
+        
+        String caminho = path + "\\" + filename;
+        
+
+
+        System.out.println(" path = "  + path );
+
+        System.out.println(" caminho" + caminho);
+//        
+//        System.out.println("request D" + d);
+
+        try {
+
+            byte barr[] = file.getBytes();
+
+            BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(caminho));
+            bout.write(barr);
+            bout.flush();
+            bout.close();
+
+            model.addAttribute("sucesso", sucesso);
+            model.addAttribute("filename", filename);
+            model.addAttribute("acao", "add");
+            
+            System.out.println(" salvou file : " + filename);
+
+        } catch (Exception e) {
+
+            System.out.println(e);
+
+            model.addAttribute("erros", erros + e);
+            model.addAttribute("acao", "add");
+            
+            System.out.println(" não salvou file : " + e);
+
+        }
+
+     
+        paciente.setFoto(filename);
+        
+       return new ModelAndView("redirect:/paciente/cadastro").addObject("paciente", paciente);
+
+    }
 
 	@Override
 	protected PacienteServicoImpl getservice() {

@@ -305,7 +305,7 @@
                                             </option>
 
                                                 
-                                             	<option th:each="tipoterapia: ${tiposterapia}" th:value="${tiposterapia}" th:utext="${tipoterapia}"> tipo </option>
+                                             	<option th:each="tipoterapia: ${tiposterapia}" th:value="${tipoterapia}" th:utext="${tipoterapia}"> tipo </option>
 					           				      	
 				           				   		
 
@@ -334,7 +334,7 @@
                                             </option>
 
                                                 
-                                             	<option th:each="planos: ${planossaude}" th:value="${planossaude}" th:utext="${planos}"> planos </option>
+                                             	<option th:each="plano: ${planossaude}" th:value="${plano}" th:utext="${plano}"> planos </option>
 					           				      	
 				           				   		
 
@@ -396,7 +396,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-pencil-square-o"></i>
                   </div>
-                            <textarea class="form-control" rows="3" placeholder="Obs ..."></textarea>
+                            <textarea id="obs" class="form-control" name="obs"  rows="3" placeholder="Obs ..."></textarea>
                             </div>
                             </div>
 <!--                             </div> -->
@@ -414,16 +414,38 @@
         
         
         <div class="col-md-4" style="margin:5px;">
+        
+        			<form th:action="@{/paciente/salvarfotopaciente}" ModelAttribute="paciente"  enctype="multipart/form-data"  method="post">
+        
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-yellow">
-              <h3 class="widget-user-username">Nome do Paciente</h3>
-              <h5 class="widget-user-desc">Tipo &amp; TERAPIA</h5>
+              <h3 class="widget-user-username" th:text="${paciente.nome}">Nome do Paciente</h3>
+              <h5 class="widget-user-desc" th:text="${paciente.tipoterapia}">Tipo &amp; TERAPIA</h5>
             </div>
-            <div class="widget-user-image">
-              <img class="img-circle" th:src="@{/img/avatar.jpg}" alt="User Avatar" />
+            
+            
+            <div class="widget-user-image" th:if="${filename}">
+              <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${filename})}" alt="User Avatar file"/>
             </div>
+            
+<!--                         <div class="widget-user-image" th:unless="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/avatar2.png}" alt="User Avatar file unles"/> -->
+<!--             </div> -->
+            
+            
+            
+                       <div class="widget-user-image" th:if="${paciente.foto}">
+              <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}" alt="User Avatar pac"/>
+            </div>
+            
+                                   <div class="widget-user-image" th:unless="${paciente.foto}">
+              <img class="img-circle" th:src="@{/img/paciente/avatar2.png}" alt="User Avatar pac unlesss"/>
+            </div>
+            
+            
+            
             <div class="box-footer">
               <div class="row">
 <!--                 <div class="col-sm-4 border-right"> -->
@@ -444,15 +466,28 @@
                 <!-- /.col -->
                 <div class="col-sm-12">
                   <div class="description-block">
-                    <h5 class="description-header"><button class="btn btn-block btn-primary btn-sm">Add foto
-                    <div class="ripple-container"></div>
-                    </button>
+                    <div class="form-group">
+                  <label for="file">File input</label>
+                  <input type="text" readonly="" class="form-control" th:value="${filename}" th:placeholder="${filename}" />
+                  <input type="file" id="file" multiple="multiple" name="file" />
+
+                  <p class="help-block">Example block-level help text here.</p>
+                </div>
+                    <h5 class="description-header">
+                    
+	                    <button class="btn btn-block btn-primary btn-sm" type="submit">Add foto
+		                    <div class="ripple-container">
+		                    
+		                    </div>
+	                    </button>
                     
                     </h5>
                     <span class="description-text"><i class="fa fa-photo"></i></span>
                   </div>
                   
                                     <div class="description-block">
+
+                                    
                     <h5 class="description-header"><button class="btn btn-block btn-primary btn-sm">Add endereco
                     <div class="ripple-container"></div>
                     </button>
@@ -469,6 +504,8 @@
             </div>
           </div>
           <!-- /.widget-user -->
+          
+          </form>
         </div>
         
         

@@ -73,7 +73,7 @@
                                         <tbody>
                                             <tr th:each="usuario: ${usuarioList}">
                                                 <td th:text="${usuario.id}" class="hide">id</td>
-                                                  <td><img th:src="@{/img/marcella.jpg}" class="img-circle img-sm" alt="fotouser"/></td>
+                                                  <td><img th:src="@{/img/usuario/{fotoc}(fotoc=${usuario.foto})}" class="img-circle img-sm" alt="fotouser"/></td>
                                                    <td th:text="${usuario.email}">email</td>
                                                      <td th:text="${usuario.senha}">senha</td>
                                                     <td th:text="${usuario.roles}">roles</td>

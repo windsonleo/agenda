@@ -43,6 +43,8 @@ public class UsuarioController extends AbstractController<Usuario> {
 	 
 	 private final UsuarioServicoImpl ususervice;
 	 
+	 private Usuario usuario= new Usuario();
+	 
 	
 	
     public UsuarioController(RoleServicoImpl roleimpl,UsuarioServicoImpl usuimpl) {
@@ -66,10 +68,11 @@ public class UsuarioController extends AbstractController<Usuario> {
 
     	
     	List<Role> roles = roleservico.findAll();
+    
     	
 //    	Genero[] generos = Genero.values();
 
-        Usuario usuario = new Usuario();
+//        Usuario usuario = new Usuario();
 //        usuario.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 //        usuario = ususervice.findByUsername(usuario.getUsername());
 
@@ -138,7 +141,7 @@ public class UsuarioController extends AbstractController<Usuario> {
     public ModelAndView SalvarFotoProduto2(@RequestParam ("file") MultipartFile file, HttpSession session, HttpServletRequest request,
                              Model model) {
 
-        String mensagem = "Sucesso ao salvar foto";
+        String sucesso = "Sucesso ao salvar foto";
         
         String erros = "Falha ao salvar foto";
         
@@ -167,9 +170,11 @@ public class UsuarioController extends AbstractController<Usuario> {
             bout.flush();
             bout.close();
 
-            model.addAttribute("mensagem", mensagem);
+            model.addAttribute("sucesso", sucesso);
             model.addAttribute("filename", filename);
             model.addAttribute("acao", "add");
+            
+            System.out.println(" salvou file : " + filename);
 
         } catch (Exception e) {
 
@@ -177,13 +182,15 @@ public class UsuarioController extends AbstractController<Usuario> {
 
             model.addAttribute("erros", erros + e);
             model.addAttribute("acao", "add");
+            
+            System.out.println(" não salvou file : " + e);
 
         }
 
-        Usuario produtocomfoto = new Usuario();
-        produtocomfoto.setFoto(filename);
+     
+        usuario.setFoto(filename);
         
-       return new ModelAndView("redirect:/usuario/cadastro").addObject("usuario", produtocomfoto);
+       return new ModelAndView("redirect:/usuario/cadastro").addObject("usuario", usuario);
 
     }
     

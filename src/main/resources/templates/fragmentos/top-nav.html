@@ -168,13 +168,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img th:src="@{/img/marcella.jpg}" class="user-image" alt="User Image" />
+              <img th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioAtt.foto})}" class="user-image" alt="User Image" />
               <span class="hidden-xs"><span th:utext="${usuarioAtt.email}">Akihiko Avaron</span></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img th:src="@{/img/marcella.jpg}" class="img-circle" alt="User Image" />
+                <img th:src="@{/img/usuario/{fotoc}(fotoc=${usuarioAtt.foto})}" class="img-circle" alt="User Image" />
 
                 <p>
                   <span th:utext="${usuarioAtt.email}">Akihiko Avaron</span><small><span th:utext="${usuarioAtt.roles}">Akihiko Avaron</span></small>

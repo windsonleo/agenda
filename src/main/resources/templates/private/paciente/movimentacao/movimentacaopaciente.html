@@ -80,7 +80,7 @@
                                         <tbody>
                                             <tr th:each="paciente: ${pacienteList}">
                                                 <td th:text="${paciente.id}" class="hide">id</td>
-                                           <td><img th:src="@{/img/avatar.jpg}" class="img-circle img-sm" alt="fotoPaciente"/></td>
+                                           <td><img th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}" class="img-circle img-sm" alt="fotoPaciente"/></td>
                                                 
                                                   <td th:text="${paciente.nome}">nome</td>
                                                    <td th:text="${paciente.telefone}">telefone</td>
