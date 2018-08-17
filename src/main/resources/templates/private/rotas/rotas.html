@@ -4,6 +4,8 @@
 	<head th:replace="fragmentos/head :: head-css">
 	
 	
+    
+	
 	</head>
 		
 		<title>Rotas</title>
@@ -35,7 +37,7 @@
     <!-- Main content -->
     <section class="content">
      
- 	<div id="map"></div> 
+ 	<div id="map" style="height: 100%;"></div> 
 
     </section>
     <!-- /.content -->
@@ -44,6 +46,21 @@
 	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
 	
 		</div>	
+		
+	<script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+    </script>
+		
+		
+						   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUyMYsukxj_Dp3UqiVCjEssZelR9gWlss&callback;=initMap"
+      th:src="@{https://maps.googleapis.com/maps/api/js?key=AIzaSyDUyMYsukxj_Dp3UqiVCjEssZelR9gWlss&callback;=initMap}" type="text/javascript">
+    </script>
 		
 		
 		

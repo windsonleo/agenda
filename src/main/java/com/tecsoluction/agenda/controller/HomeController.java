@@ -120,7 +120,7 @@ public class HomeController {
     	
     	logger.info("Welcome Home /home! The client locale is {}.", locale);
 
-        ModelAndView home = new ModelAndView("/public/home");
+        ModelAndView home = new ModelAndView("/private/home");
         
         
          Atividade atividade = new Atividade();

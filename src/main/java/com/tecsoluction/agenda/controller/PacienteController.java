@@ -2,6 +2,7 @@ package com.tecsoluction.agenda.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -90,19 +91,19 @@ public class PacienteController extends AbstractController<Paciente> {
 
     }
     
-//    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-//    public ModelAndView profilePaciente(HttpServletRequest request) {
-//
-//        UUID idf = UUID.fromString(request.getParameter("id"));
-//
-//        ModelAndView profilepaciente = new ModelAndView("/public/profile");
-//
-//        Paciente paciente = getservice().findOne(idf);
-//
-//        profilepaciente.addObject("paciente", paciente);
-//
-//        return profilepaciente;
-//    }
+    @RequestMapping(value = "/perfil", method = RequestMethod.GET)
+    public ModelAndView profilePaciente(HttpServletRequest request) {
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+        ModelAndView profilepaciente = new ModelAndView("/private/paciente/perfil");
+
+        Paciente paciente = getservice().findOne(idf);
+
+        profilepaciente.addObject("paciente", paciente);
+
+        return profilepaciente;
+    }
 //    
 //    
 //    

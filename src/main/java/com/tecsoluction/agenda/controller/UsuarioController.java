@@ -86,12 +86,12 @@ public class UsuarioController extends AbstractController<Usuario> {
 
     }
     
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    @RequestMapping(value = "/perfil", method = RequestMethod.GET)
     public ModelAndView profileUsuario(HttpServletRequest request) {
 
         UUID idf = UUID.fromString(request.getParameter("id"));
 
-        ModelAndView profileusuario = new ModelAndView("/public/profile");
+        ModelAndView profileusuario = new ModelAndView("/private/usuario/perfil");
 
         Usuario usuario = getservice().findOne(idf);
 
@@ -147,17 +147,21 @@ public class UsuarioController extends AbstractController<Usuario> {
         
 //        ModelAndView cadastro = new ModelAndView("/private/produto/cadastro/cadastroproduto");
 
-        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario");
+        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario/");
         
         String filename = file.getOriginalFilename();
         
-        String caminho = path + "\\" + filename;
+        
+//        heroku não funfa com essas barras
+//        String caminho = path + "\\" + filename;
+        
+        String caminho = path + filename;
         
 
 
         System.out.println(" path = "  + path );
 
-        System.out.println(" caminho" + caminho);
+//        System.out.println(" caminho" + caminho);
 //        
 //        System.out.println("request D" + d);
 

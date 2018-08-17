@@ -59,6 +59,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/css/**").permitAll()
 				.antMatchers("/js/**").permitAll()
 				.antMatchers("/login").permitAll()
+				.antMatchers("/error/**").permitAll()
 				.antMatchers("/fonts/**").permitAll()
 				.antMatchers("/bootstrap/**").permitAll()
 				.antMatchers("/usuario/listar/").permitAll()
@@ -137,6 +138,10 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
        web
        .ignoring()
        .antMatchers("*/fonts/**");
+       
+       web
+       .ignoring()
+       .antMatchers("*/error/**");
        
        
 

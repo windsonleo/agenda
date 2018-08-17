@@ -86,7 +86,7 @@ public class ContextoAplicacao {
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleAllException(Exception ex) {
 
-		ModelAndView model = new ModelAndView("error/erro");
+		ModelAndView model = new ModelAndView("/error/erro");
 		model.addObject("errMsg", ex.toString());
 
 		return model;
