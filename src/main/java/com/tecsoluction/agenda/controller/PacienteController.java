@@ -78,7 +78,7 @@ public class PacienteController extends AbstractController<Paciente> {
     	
     	
 
-        Paciente paciente = new Paciente();
+        paciente = new Paciente();
 //        paciente.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 //        paciente = ususervice.findByUsername(paciente.getUsername());
 

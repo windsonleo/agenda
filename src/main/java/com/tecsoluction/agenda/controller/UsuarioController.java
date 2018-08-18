@@ -72,7 +72,7 @@ public class UsuarioController extends AbstractController<Usuario> {
     	
 //    	Genero[] generos = Genero.values();
 
-        Usuario usuario = new Usuario();
+        usuario = new Usuario();
 //        usuario.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 //        usuario = ususervice.findByUsername(usuario.getUsername());
 
