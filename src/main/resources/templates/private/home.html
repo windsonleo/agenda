@@ -354,6 +354,29 @@
           <!-- /.box -->
 
         </section>
+        
+                        <div class="box-body no-padding">
+                  <ul class="users-list clearfix">
+                    <li th:each="paciente : ${pacientes}">
+                      <img th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}" alt="User Image">
+                      <a class="users-list-name" href="#" th:utext="${paciente.nome}">Thanh Nguyen</a>
+                      <span class="users-list-date">Today</span>
+                    </li>
+    
+                  </ul>
+                  <!-- /.users-list -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer text-center">
+                  <a href="javascript:void(0)" class="uppercase">View All Users</a>
+                </div>
+                <!-- /.box-footer -->
+            
+            
+              </div>
+              <!--/.box -->
+            </div>
+        
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->

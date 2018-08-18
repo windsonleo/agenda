@@ -151,11 +151,13 @@ public class PacienteController extends AbstractController<Paciente> {
         
 //        ModelAndView cadastro = new ModelAndView("/private/produto/cadastro/cadastroproduto");
 
-        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/paciente");
+        String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/paciente/");
         
         String filename = file.getOriginalFilename();
         
-        String caminho = path + "\\" + filename;
+//        String caminho = path + "\\" + filename;
+        
+        String caminho = path  + filename;
         
 
 
