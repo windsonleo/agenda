@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.agenda.entidade.Paciente;
+import com.tecsoluction.agenda.entidade.Usuario;
 import com.tecsoluction.agenda.framework.AbstractController;
 import com.tecsoluction.agenda.framework.AbstractEditor;
 import com.tecsoluction.agenda.servico.PacienteServicoImpl;
@@ -44,7 +45,7 @@ public class PacienteController extends AbstractController<Paciente> {
 	 
 	 private PlanoSaude[] planossaude;
 	 
-	 private Paciente paciente= new Paciente();
+	 private Paciente paciente;
 	
 	
     public PacienteController(PacienteServicoImpl usuimpl) {
@@ -77,7 +78,7 @@ public class PacienteController extends AbstractController<Paciente> {
     	
     	
 
-//        Paciente paciente = new Paciente();
+        Paciente paciente = new Paciente();
 //        paciente.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 //        paciente = ususervice.findByUsername(paciente.getUsername());
 
@@ -143,7 +144,7 @@ public class PacienteController extends AbstractController<Paciente> {
     // verificar tmanho do arquivo e se o arquivo ja existe
     @RequestMapping(value = "salvarfotopaciente", method = RequestMethod.POST)
     public ModelAndView SalvarFotoPaciente(@RequestParam ("file") MultipartFile file, HttpSession session, HttpServletRequest request,
-                             Model model) {
+                             Model model,@ModelAttribute Paciente pacienter) {
 
         String sucesso = "Sucesso ao salvar foto";
         
@@ -179,6 +180,7 @@ public class PacienteController extends AbstractController<Paciente> {
             model.addAttribute("sucesso", sucesso);
             model.addAttribute("filename", filename);
             model.addAttribute("acao", "add");
+            pacienter.setFoto(filename);
             
             System.out.println(" salvou file : " + filename);
 
@@ -194,9 +196,9 @@ public class PacienteController extends AbstractController<Paciente> {
         }
 
      
-        paciente.setFoto(filename);
+//        paciente.setFoto(filename);
         
-       return new ModelAndView("redirect:/paciente/cadastro").addObject("paciente", paciente);
+       return new ModelAndView("redirect:/paciente/cadastro").addObject("paciente", pacienter);
 
     }
 

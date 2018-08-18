@@ -352,7 +352,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar-check-o"></i>
                   </div>
-                                    <input id="datainicio" class="form-control" name="datainicio" type="text" th:value="${paciente.datainicio}"
+                                    <input autocomplete="off" id="datainicio" class="form-control" name="datainicio" type="text" th:value="${paciente.datainicio}"
                                            placeholder="Data Inicio"> </input>
                                 </div>
                             </div>
@@ -363,7 +363,7 @@
                   <div class="input-group-addon">
                     <i class="fa  fa-calendar-times-o"></i>
                   </div>
-                                    <input id="datafim" class="form-control" name="datafim" type="text" th:value="${paciente.datafim}"
+                                    <input autocomplete="off" id="datafim" class="form-control" name="datafim" type="text" th:value="${paciente.datafim}"
                                            placeholder="Data Termino"> </input>
                                 </div>
                             </div>
@@ -584,7 +584,8 @@
 		 				<script src="resources/static/js/demo.js"
 			th:src="@{/js/demo.js}"></script>
 			
-			
+				    				<script src="resources/static/js/bootstrap-datepicker.pt-BR.js"
+			th:src="@{/js/bootstrap-datepicker.pt-BR.js}" th:inline="javascript" ></script>
 			
 			
 			<script type="text/javascript">
@@ -592,7 +593,21 @@
 		     $(function () {
 	    	
 		     $('#datepicker').datepicker({
-		         autoclose: true
+		         autoclose: true,
+		         format: 'dd/mm/yyyy',
+			    	language: 'pt-BR'
+		       });
+		     
+		     $('#datainicio').datepicker({
+		         autoclose: true,
+		         format: 'dd/mm/yyyy',
+			    	language: 'pt-BR'
+		       });
+		     
+		     $('#datafim').datepicker({
+		         autoclose: true,
+		         format: 'dd/mm/yyyy',
+			    	language: 'pt-BR'
 		       });
 		    
 		     });
