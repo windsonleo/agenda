@@ -43,7 +43,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 	 
 	 private final UsuarioServicoImpl ususervice;
 	 
-	 private Usuario usuario;
+	 private Usuario usuario  = new Usuario();;
 	 
 	
 	
@@ -72,7 +72,7 @@ public class UsuarioController extends AbstractController<Usuario> {
     	
 //    	Genero[] generos = Genero.values();
 
-        usuario = new Usuario();
+//        usuario = new Usuario();
 //        usuario.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 //        usuario = ususervice.findByUsername(usuario.getUsername());
 

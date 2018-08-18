@@ -45,7 +45,7 @@ public class PacienteController extends AbstractController<Paciente> {
 	 
 	 private PlanoSaude[] planossaude;
 	 
-	 private Paciente paciente;
+	 private Paciente paciente= new Paciente();
 	
 	
     public PacienteController(PacienteServicoImpl usuimpl) {
@@ -78,7 +78,7 @@ public class PacienteController extends AbstractController<Paciente> {
     	
     	
 
-        paciente = new Paciente();
+//        paciente = new Paciente();
 //        paciente.setUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 //        paciente = ususervice.findByUsername(paciente.getUsername());
 
@@ -196,7 +196,7 @@ public class PacienteController extends AbstractController<Paciente> {
         }
 
      
-//        paciente.setFoto(filename);
+        paciente.setFoto(filename);
         
        return new ModelAndView("redirect:/paciente/cadastro").addObject("paciente", paciente);
 
