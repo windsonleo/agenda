@@ -180,7 +180,7 @@ public class UsuarioController extends AbstractController<Usuario> {
             
             System.out.println(" salvou file : " + filename);
             
-            usuarior.setFoto(filename);
+            usuario.setFoto(filename);
 
         } catch (Exception e) {
 
@@ -196,7 +196,7 @@ public class UsuarioController extends AbstractController<Usuario> {
      
 //        usuarior.setFoto(filename);
         
-       return new ModelAndView("redirect:/usuario/cadastro").addObject("usuario", usuarior);
+       return new ModelAndView("redirect:/usuario/cadastro").addObject("usuario", usuario);
 
     }
     

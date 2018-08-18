@@ -180,7 +180,7 @@ public class PacienteController extends AbstractController<Paciente> {
             model.addAttribute("sucesso", sucesso);
             model.addAttribute("filename", filename);
             model.addAttribute("acao", "add");
-            pacienter.setFoto(filename);
+            paciente.setFoto(filename);
             
             System.out.println(" salvou file : " + filename);
 
@@ -198,7 +198,7 @@ public class PacienteController extends AbstractController<Paciente> {
      
 //        paciente.setFoto(filename);
         
-       return new ModelAndView("redirect:/paciente/cadastro").addObject("paciente", pacienter);
+       return new ModelAndView("redirect:/paciente/cadastro").addObject("paciente", paciente);
 
     }
 
