@@ -146,6 +146,8 @@ public class HomeController {
         return home;
     }
     
+    
+    
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView Login(Locale locale, Model model) {
       
