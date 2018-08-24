@@ -72,11 +72,11 @@ public class UsuarioController extends AbstractController<Usuario> {
     	List<Role> roles = roleservico.findAll();
     	
     	
-    	if( usuario == null){
+    
     		
     		usuario = new Usuario();
     		
-    	}
+    	
     
     	
 //    	Genero[] generos = Genero.values();

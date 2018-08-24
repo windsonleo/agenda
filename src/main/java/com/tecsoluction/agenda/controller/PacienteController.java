@@ -90,11 +90,11 @@ public class PacienteController extends AbstractController<Paciente> {
     	
     	planossaude = PlanoSaude.values();
     	
-    	if(paciente == null){
+    
     		
     		paciente = new Paciente();
     		
-    	}
+    	
     	
 
 //        paciente = new Paciente();
