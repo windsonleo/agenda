@@ -3,6 +3,7 @@ package com.tecsoluction.agenda.controller;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,13 +24,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tecsoluction.agenda.entidade.Endereco;
+import com.tecsoluction.agenda.entidade.Evento;
 import com.tecsoluction.agenda.entidade.Evolucao;
 import com.tecsoluction.agenda.entidade.Paciente;
+import com.tecsoluction.agenda.entidade.Patologia;
 import com.tecsoluction.agenda.entidade.Usuario;
 import com.tecsoluction.agenda.framework.AbstractController;
 import com.tecsoluction.agenda.framework.AbstractEditor;
 import com.tecsoluction.agenda.servico.EnderecoServicoImpl;
 import com.tecsoluction.agenda.servico.PacienteServicoImpl;
+import com.tecsoluction.agenda.servico.PatologiaServicoImpl;
 import com.tecsoluction.agenda.servico.UsuarioServicoImpl;
 import com.tecsoluction.agenda.util.PlanoSaude;
 import com.tecsoluction.agenda.util.TipoTerapia;
@@ -56,14 +60,17 @@ public class PacienteController extends AbstractController<Paciente> {
 	 private EnderecoServicoImpl enderecoservico;
 	 
 	 private UsuarioServicoImpl usuarioServico;
+	 
+	 private PatologiaServicoImpl patologiaServico;
 	
 	
-    public PacienteController(PacienteServicoImpl usuimpl,EnderecoServicoImpl end,UsuarioServicoImpl usuarioser) {
+    public PacienteController(PacienteServicoImpl usuimpl,EnderecoServicoImpl end,UsuarioServicoImpl usuarioser,PatologiaServicoImpl pato) {
 		super("paciente");
 	
 		this.ususervice = usuimpl;
 		this.enderecoservico = end;
 		this.usuarioServico = usuarioser;
+		this.patologiaServico = pato;
 		
 	}
 
@@ -354,6 +361,98 @@ public class PacienteController extends AbstractController<Paciente> {
    	
    	return cadastroendereco;
      }
+    
+    
+    
+    
+    @RequestMapping(value = "/AddPatologia", method = RequestMethod.GET)
+    public ModelAndView AddPatologiaPaciente(HttpServletRequest request) {
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+        ModelAndView profilepaciente = new ModelAndView("/private/paciente/patologia");
+
+        this.paciente = getservice().findOne(idf);
+        
+//	   	 Usuario usuario;
+//	 	
+//	   	 String mail =SecurityContextHolder.getContext().getAuthentication().getName();
+//	        
+//	   	 usuario = usuarioServico.findByEmail(mail);
+//        
+//        Evolucao evolucao = new Evolucao();
+//        
+//        evolucao.setUsuario(usuario);
+//        evolucao.setData(new Date());
+//        evolucao.setDescricao(request.getParameter("descricao"));
+//        
+//        paciente.addEvolucao(evolucao);
+//        
+//        getservice().edit(paciente);
+//        
+//        
+//        
+//        Date datanow = new Date();
+        
+        List<Patologia> patologias = patologiaServico.findAll();
+
+        profilepaciente.addObject("paciente", paciente);
+        profilepaciente.addObject("patologias", patologias);
+        
+        
+//        profilepaciente.addObject("datanow", datanow);
+//        profilepaciente.addObject("evolucao", new Evolucao());
+
+        return profilepaciente;
+    }
+    
+    
+    
+    @RequestMapping(value = "/AddPatologia", method = RequestMethod.POST)
+    public ModelAndView AddPatologiaPacientePost(HttpServletRequest request,@ModelAttribute Paciente model) {
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+        ModelAndView profilepaciente = new ModelAndView("/private/paciente/perfil");
+
+        this.paciente = getservice().findOne(idf);
+        
+//	   	 Usuario usuario;
+//	 	
+//	   	 String mail =SecurityContextHolder.getContext().getAuthentication().getName();
+//	        
+//	   	 usuario = usuarioServico.findByEmail(mail);
+//        
+//        Evolucao evolucao = new Evolucao();
+//        
+//        evolucao.setUsuario(usuario);
+//        evolucao.setData(new Date());
+//        evolucao.setDescricao(request.getParameter("descricao"));
+//        
+//        paciente.addEvolucao(evolucao);
+//        
+        
+        paciente.setPatologias(model.getPatologias());
+        getservice().edit(paciente);
+//        
+//        
+//        
+//        Date datanow = new Date();
+        
+        List<Patologia> patologias = patologiaServico.findAll();
+
+        profilepaciente.addObject("paciente", paciente);
+        profilepaciente.addObject("patologias", patologias);
+        profilepaciente.addObject("evolucao", new Evolucao());
+        
+//        profilepaciente.addObject("datanow", datanow);
+//        profilepaciente.addObject("evolucao", new Evolucao());
+
+        return profilepaciente;
+    }
+    
+    
+    
 //    
 //    @RequestMapping(value = "/registro", method = RequestMethod.POST)
 //    public ModelAndView RegistroPost(Locale locale, Model model, HttpServletRequest request) {

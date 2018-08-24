@@ -73,15 +73,12 @@
             <!-- /.box-header -->
             <div class="box-body">
               <strong><i class="fa fa-book margin-r-5"></i> Patologias</strong>
-			
-			<div th:each="patologia: ${paciente.patologias}">
-              <p class="text-muted" th:text="${patologia.nome}">
+
+              <p class="text-muted">
                 B.S. in Computer Science from the University of Tennessee at Knoxville
               </p>
               
-              </div>
-              
-              <a th:href="@{/paciente/AddPatologia(id=${paciente.id})}" class="btn btn-success btn-raised btn-block"><b>Add Patologia</b></a>
+              <a th:href="@{/paciente/AddPatologia(id=${paciente.id})}" class="btn btn-primary btn-raised btn-block"><b>Add Patologia</b></a>
               
 
               <hr> </hr>

@@ -97,6 +97,13 @@ public class Paciente  extends BaseEntity implements Serializable {
     @JsonManagedReference
     private List<Evolucao> evolucoes;
     
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "paciente_patologia",
+            joinColumns = @JoinColumn(name = "idpaciente"),
+            inverseJoinColumns = @JoinColumn(name = "idpatologia"))
+    private Set<Patologia> patologias;
+    
 	
 
 //    @JsonIgnore
@@ -137,6 +144,25 @@ public class Paciente  extends BaseEntity implements Serializable {
     	
     	
     	this.getEvolucoes().remove(index);
+	
+    	
+    }
+    
+    
+    public void addPatologia(Patologia item){
+    	
+    	
+    	this.getPatologias().add(item);
+    	
+    	
+    	
+    }
+    
+    
+    public void removePatologia(int index){
+    	
+    	
+    	this.getPatologias().remove(index);
 	
     	
     }
