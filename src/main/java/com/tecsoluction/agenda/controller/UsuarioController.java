@@ -43,7 +43,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 	 
 	 private final UsuarioServicoImpl ususervice;
 	 
-	 private Usuario usuario = new Usuario() ;
+	 private Usuario usuario ;
 	 
 	
 	
@@ -72,15 +72,11 @@ public class UsuarioController extends AbstractController<Usuario> {
     	List<Role> roles = roleservico.findAll();
     	
     	
-//    	if( usuario != null){
-//    		
-//    		usuario = new Usuario();
-//    		
-//    	}else {
-//    		
-//    		
-//    		
-//    	}
+    	if( usuario == null){
+    		
+    		usuario = new Usuario();
+    		
+    	}
     
     	
 //    	Genero[] generos = Genero.values();
@@ -211,7 +207,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 
 //       Usuario usuario =  new Usuario();
      
-        usuario.setFoto(filename);
+        this.usuario.setFoto(filename);
         
        return new ModelAndView("redirect:/usuario/cadastro").addObject("usuario", usuario);
 

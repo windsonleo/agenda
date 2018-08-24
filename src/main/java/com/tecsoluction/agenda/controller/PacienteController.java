@@ -51,7 +51,7 @@ public class PacienteController extends AbstractController<Paciente> {
 	 
 	 private PlanoSaude[] planossaude;
 	 
-	 private Paciente paciente = new Paciente();
+	 private Paciente paciente;
 	 
 	 private EnderecoServicoImpl enderecoservico;
 	 
@@ -90,11 +90,11 @@ public class PacienteController extends AbstractController<Paciente> {
     	
     	planossaude = PlanoSaude.values();
     	
-//    	if(paciente != null){
-//    		
-//    		paciente = new Paciente();
-//    		
-//    	}
+    	if(paciente == null){
+    		
+    		paciente = new Paciente();
+    		
+    	}
     	
 
 //        paciente = new Paciente();
@@ -437,7 +437,7 @@ public class PacienteController extends AbstractController<Paciente> {
         }
 
 //     Paciente paciente = new Paciente();
-        paciente.setFoto(filename);
+        this.paciente.setFoto(filename);
         
        return new ModelAndView("redirect:/paciente/cadastro").addObject("paciente", paciente);
 
