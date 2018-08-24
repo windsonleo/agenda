@@ -2,6 +2,8 @@ package com.tecsoluction.agenda;
 
 import java.util.UUID;
 
+import javax.mail.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
@@ -75,7 +77,7 @@ public class ContextoAplicacao {
 	@ExceptionHandler(CustomGenericException.class)
 	public ModelAndView handleCustomException(CustomGenericException ex) {
 
-		ModelAndView model = new ModelAndView("/error/erro");
+		ModelAndView model = new ModelAndView("/public/error/erro");
 		model.addObject("errCode", ex.getErrCode());
 		model.addObject("errMsg", ex.getErrMsg());
 
@@ -86,7 +88,7 @@ public class ContextoAplicacao {
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleAllException(Exception ex) {
 
-		ModelAndView model = new ModelAndView("/error/erro");
+		ModelAndView model = new ModelAndView("/public/error/erro");
 		model.addObject("errMsg", ex.toString());
 
 		return model;

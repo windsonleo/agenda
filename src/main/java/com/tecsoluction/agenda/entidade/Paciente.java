@@ -2,10 +2,13 @@ package com.tecsoluction.agenda.entidade;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,6 +21,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -27,6 +31,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tecsoluction.agenda.framework.BaseEntity;
 import com.tecsoluction.agenda.util.PlanoSaude;
 import com.tecsoluction.agenda.util.TipoTerapia;
@@ -87,6 +92,11 @@ public class Paciente  extends BaseEntity implements Serializable {
     
     private String obs;
     
+    @ElementCollection(fetch=FetchType.EAGER)
+    @CollectionTable(name = "evolucao_paciente", joinColumns = @JoinColumn(name = "id"))
+    @JsonManagedReference
+    private List<Evolucao> evolucoes;
+    
 	
 
 //    @JsonIgnore
@@ -109,6 +119,27 @@ public class Paciente  extends BaseEntity implements Serializable {
 		
 		
 	}
+	
+	
+	
+	
+    public void addEvolucao(Evolucao item){
+    	
+    	
+    	this.getEvolucoes().add(item);
+    	
+    	
+    	
+    }
+    
+    
+    public void removeEvolucao(int index){
+    	
+    	
+    	this.getEvolucoes().remove(index);
+	
+    	
+    }
 	
 	    
 	    

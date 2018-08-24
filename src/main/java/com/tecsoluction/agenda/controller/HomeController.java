@@ -175,16 +175,18 @@ public class HomeController {
     }
     
     
-    @RequestMapping(value = "/erro", method = RequestMethod.GET)
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
     public ModelAndView Error(Locale locale, Model model) {
        
     	logger.info("Welcome Error ! The client locale is {}.", locale);
 
-        ModelAndView home = new ModelAndView("/public/erro");
+        ModelAndView home = new ModelAndView("/public/error/erro");
 
 
         return home;
     }
+    
+    
     
     @RequestMapping(value = "/accessdenied", method = RequestMethod.GET)
     public ModelAndView accessdenied(Locale locale, Model model) {

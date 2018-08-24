@@ -72,7 +72,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 				.antMatchers("/private/**").hasAnyRole("PACIENTE","ADM").anyRequest().authenticated()
 				.and()
 				.csrf().disable().formLogin()
-				.loginPage("/login").failureUrl("/erro")
+				.loginPage("/login").failureUrl("/error/erro")
 				.defaultSuccessUrl("/home")
 				.usernameParameter("email")
 				.passwordParameter("senha")

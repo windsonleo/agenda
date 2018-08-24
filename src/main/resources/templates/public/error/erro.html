@@ -5,44 +5,71 @@
     <title>Erro</title>
 </head>
 
-<body>
-
-	<div class="wrapper">
-
- 			<div class="main-panel">
-
-			  	<div th:replace="fragmentos/top-nav :: top-nav">
-				
-				</div>
+<body  class="hold-transition skin-blue sidebar-mini">
 			
-			<div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-							<aside>
-							    <h2>Erro Erro Erro public com pasta</h2>
-<!-- 							    <a href="#" th:each="p : ${latest5psts}" th:text="${p.title}" -->
-<!-- 							       th:href="@{/posts/view/{id}/(id=${p.id})}">Work Begins on HTML5.1</a> -->
-							<p th:text="${errCode}"></p>
-								<p th:text="${errMsg}"></p>
-							
-							</aside>
+			<div class="wrapper">
 
-							<main id="posts">
-							
-							</main>
+	   			  <nav th:replace="fragmentos/top-nav :: nav">
+				
+				</nav>
+				
+					<div th:replace="fragmentos/nav :: nav-side"> </div>
 
-							<footer th:replace="fragmentos/footer ::footer" >
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        404 Error Page
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Erro</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">404 error</li>
+      </ol>
+    </section>
 
-							</footer>
-							
-							</div>
-							</div>
-							</div>
-							</div>
-							</div>
-							
+    <!-- Main content -->
+    <section class="content">
+      <div class="error-page">
+        <h2 class="headline text-yellow"> 404</h2>
 
-			<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+        <div class="error-content">
+          <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
+
+          <p th:text="${errCode}">
+            We could not find the page you were looking for.
+            Meanwhile, you may <a href="../../index.html">return to dashboard</a> or try using the search form.
+          </p>
+          
+          <p th:text="${errMsg}"></p>
+          
+               <p th:text="${erro}"></p>
+
+          <form class="search-form">
+            <div class="input-group">
+              <input type="text" name="search" class="form-control" placeholder="Search" />
+
+              <div class="input-group-btn">
+                <button type="submit" name="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.input-group -->
+          </form>
+        </div>
+        <!-- /.error-content -->
+      </div>
+      <!-- /.error-page -->
+    </section>
+    <!-- /.content -->
+  </div>
+  
+  	<div th:replace="fragmentos/footer :: script" style="display:none;"></div>
+  
+</div>
+
+							
+						
 
 </body>
 

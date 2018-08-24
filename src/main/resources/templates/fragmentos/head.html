@@ -90,6 +90,43 @@
 <!-- 	href="resources/static/css/style.css" th:href="@{/css/style.css}" -->
 <!-- 	type="text/css" /> -->
 
+			<link rel="stylesheet" media="screen"
+	href="resources/static/css/maps.css"
+	th:href="@{/css/maps.css}" type="text/css" />
+	
+	   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUyMYsukxj_Dp3UqiVCjEssZelR9gWlss"
+      th:src="@{https://maps.googleapis.com/maps/api/js?key=AIzaSyDUyMYsukxj_Dp3UqiVCjEssZelR9gWlss}">
+    </script>
+    
+    	<script  type="text/javascript">
+      
+    	var map;
+    	
+    	var latitude;
+    	
+    	var longetude;
+      
+      function initialize() {
+    	  
+    	  var myLatlng = new google.maps.LatLng(-8.0631495, -34.87131120000004);
+    	  var mapOptions = {
+    	  zoom: 17,
+    	  center: myLatlng,
+    	  mapTypeId: google.maps.MapTypeId.ROADMAP
+    	}
+    	  
+    	  
+        map = new google.maps.Map(document.getElementById("maper"),mapOptions);
+        
+      }
+      
+      google.maps.event.addDomListener(window, 'load', initialize);
+      
+//       $(document).ready(function(){
+//     	  initialize();
+//     	});
+    </script>
+
 
 
 <meta th:include="this :: head-css" />

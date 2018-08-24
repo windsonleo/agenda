@@ -43,7 +43,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 	 
 	 private final UsuarioServicoImpl ususervice;
 	 
-	 private Usuario usuario  = new Usuario();;
+	 private Usuario usuario = new Usuario() ;
 	 
 	
 	
@@ -66,8 +66,21 @@ public class UsuarioController extends AbstractController<Usuario> {
     @ModelAttribute
     public void addAttributes(Model model) {
 
+    	logger.info("Welcome add atribute Usuario Controller !" + usuario);
+
     	
     	List<Role> roles = roleservico.findAll();
+    	
+    	
+//    	if( usuario != null){
+//    		
+//    		usuario = new Usuario();
+//    		
+//    	}else {
+//    		
+//    		
+//    		
+//    	}
     
     	
 //    	Genero[] generos = Genero.values();
@@ -140,6 +153,8 @@ public class UsuarioController extends AbstractController<Usuario> {
     @RequestMapping(value = "salvarfotousuario", method = RequestMethod.POST)
     public ModelAndView SalvarFotoProduto2(@RequestParam ("file") MultipartFile file, HttpSession session, HttpServletRequest request,
                              Model model, @ModelAttribute Usuario usuarior) {
+    	
+//    	Usuario usuario = new Usuario();
 
         String sucesso = "Sucesso ao salvar foto";
         
@@ -180,7 +195,8 @@ public class UsuarioController extends AbstractController<Usuario> {
             
             System.out.println(" salvou file : " + filename);
             
-            usuario.setFoto(filename);
+           
+//           usuario.setFoto(filename);
 
         } catch (Exception e) {
 
@@ -193,8 +209,9 @@ public class UsuarioController extends AbstractController<Usuario> {
 
         }
 
+//       Usuario usuario =  new Usuario();
      
-//        usuarior.setFoto(filename);
+        usuario.setFoto(filename);
         
        return new ModelAndView("redirect:/usuario/cadastro").addObject("usuario", usuario);
 

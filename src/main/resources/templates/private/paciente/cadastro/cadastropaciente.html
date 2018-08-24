@@ -396,7 +396,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-pencil-square-o"></i>
                   </div>
-                            <textarea id="obs" class="form-control" name="obs"  rows="3" placeholder="Obs ..."></textarea>
+                            <textarea id="obs" class="form-control" name="obs"  th:placeholder="${paciente.obs}" th:value="${paciente.obs}"></textarea>
                             </div>
                             </div>
 <!--                             </div> -->
@@ -467,13 +467,13 @@
                 <div class="col-sm-12">
                   <div class="description-block">
                     <div class="form-group">
-                  <label for="file">File input</label>
+                  <label for="file">Escolha a Foto</label>
                   <input type="text" readonly="" class="form-control" th:value="${filename}" th:placeholder="${filename}" />
                   <input type="file" id="file" multiple="multiple" name="file" />
 
                   <p class="help-block">Example block-level help text here.</p>
                 </div>
-                    <h5 class="description-header">
+                    <h5 class="description-header" th:unless="${paciente.id}">
                     
 	                    <button class="btn btn-block btn-primary btn-sm" type="submit">Add foto
 		                    <div class="ripple-container">
@@ -482,17 +482,42 @@
 	                    </button>
                     
                     </h5>
+                    
+                                        <h5 class="description-header" th:if="${paciente.id}">
+                    
+	                    <button class="btn btn-block btn-primary disabled" type="submit">Add foto
+		                    <div class="ripple-container">
+		                    
+		                    </div>
+	                    </button>
+                    
+                    </h5>
+                    
+                    
+                    
+                    
+                    
                     <span class="description-text"><i class="fa fa-photo"></i></span>
                   </div>
                   
                                     <div class="description-block">
 
                                     
-                    <h5 class="description-header"><button class="btn btn-block btn-primary btn-sm">Add endereco
+                    <h5 class="description-header" th:if="${paciente.id}">
+                    <a class="btn btn-block btn-primary btn-sm"  th:href="@{/paciente/addendereco(id=${paciente.id})}">Add endereco
                     <div class="ripple-container"></div>
-                    </button>
+                    </a>
                     
                     </h5>
+                    
+                    
+                    <h5 class="description-header" th:unless="${paciente.id}"><a class="btn btn-block btn-primary disabled" th:href="@{/paciente/addendereco(id=${paciente.id})}">Add endereco
+                    <div class="ripple-container"></div>
+                    </a>
+                    
+                    </h5>
+                    
+                    
                     <span class="description-text"><i class="fa fa-map"></i></span>
                   </div>
                   

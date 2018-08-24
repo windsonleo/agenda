@@ -105,5 +105,12 @@ public class Endereco extends BaseEntity implements Serializable {
 //    	// TODO Auto-generated method stub
 //    	return super.hashCode();
 //    }
+    
+    
+    @Override
+    public String toString() {
+    	// TODO Auto-generated method stub
+    	return logradouro +","+ bairro +","+ cidade;
+    }
 
 }
