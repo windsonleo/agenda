@@ -1,6 +1,7 @@
 package com.tecsoluction.agenda.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -22,10 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tecsoluction.agenda.entidade.Atividade;
 import com.tecsoluction.agenda.entidade.Evento;
 import com.tecsoluction.agenda.entidade.Paciente;
+import com.tecsoluction.agenda.entidade.Patologia;
 import com.tecsoluction.agenda.entidade.Usuario;
 import com.tecsoluction.agenda.servico.AtividadeServicoImpl;
 import com.tecsoluction.agenda.servico.EventoServicoImpl;
 import com.tecsoluction.agenda.servico.PacienteServicoImpl;
+import com.tecsoluction.agenda.servico.PatologiaServicoImpl;
 import com.tecsoluction.agenda.servico.UsuarioServicoImpl;
 import com.tecsoluction.agenda.util.StatusAtividade;
 
@@ -48,6 +51,9 @@ public class HomeController {
 	@Autowired
 	private  PacienteServicoImpl pacienteService = new PacienteServicoImpl();
 	
+	@Autowired
+	private  PatologiaServicoImpl patologiaService = new PatologiaServicoImpl();
+	
     @Autowired 
     private JavaMailSender mailSender;
     
@@ -63,12 +69,25 @@ public class HomeController {
     
     private List<Paciente> pacientes = new ArrayList<Paciente>();
     
+    private List<Patologia> patologias = new ArrayList<Patologia>();
+    
+    private List<Paciente> pacientesAlta = new ArrayList<Paciente>();
+    
+    private List<Paciente> pacientesInternados = new ArrayList<Paciente>();
+    
+    
+    
+    
     
     private int qtdatividade;
  
     private int qtdusuarios;
     
     private int qtdpacientes;
+    
+    private int qtdpacientesaltas;
+    
+    private int qtdpacientesinternados;
 
 	
 	  @ModelAttribute
@@ -82,6 +101,8 @@ public class HomeController {
 		  
 		  eventos = eventoService.findAll();
 		  
+		  patologias = patologiaService.findAll();
+		  
 		  
 		  
 		  qtdatividade = atividades.size();
@@ -89,6 +110,10 @@ public class HomeController {
 		  qtdusuarios = usuarios.size();
 		  
 		  qtdpacientes = pacientes.size();
+		  
+		  qtdpacientesaltas = VerificarAltas(pacientes);
+		  
+		  qtdpacientesinternados = VerificarInternacoes(pacientes);
 		  
 		  
 //		  	List<Produto> produtos = produtoService.findAll();
@@ -103,6 +128,11 @@ public class HomeController {
 	        model.addAttribute("qtdusuarios", qtdusuarios);
 	        model.addAttribute("qtdpacientes", qtdpacientes);
 	        model.addAttribute("eventos", eventos);
+	        model.addAttribute("patologias", patologias);
+	        model.addAttribute("qtdpacientesaltas", qtdpacientesaltas);
+	        model.addAttribute("qtdpacientesinternados", qtdpacientesinternados);
+
+	        
 	        
 	        
 	        
@@ -113,7 +143,64 @@ public class HomeController {
 	
 	
 	
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    private int VerificarAltas(List<Paciente> pacientes2) {
+		
+    	
+    	pacientesAlta = new ArrayList<Paciente>();
+    	
+    	qtdpacientesaltas = 0;
+
+    	for (Paciente paciente : pacientes2) {
+    		
+    		
+    		if(paciente.isAlta()){
+    			
+    			pacientesAlta.add(paciente);
+    			qtdpacientesaltas = qtdpacientesaltas + 1;
+    			
+    			
+    		}
+    		
+			
+		}
+    	
+    	
+    	
+    	
+		return qtdpacientesaltas;
+	}
+    
+    
+    private int VerificarInternacoes(List<Paciente> pacientes2) {
+		
+    	
+    	pacientesInternados = new ArrayList<Paciente>();
+    	
+    	qtdpacientesinternados = 0;
+
+    	for (Paciente paciente : pacientes2) {
+    		
+    		
+    		if(paciente.isInternacao()){
+    			
+    			pacientesInternados.add(paciente);
+    			qtdpacientesinternados = qtdpacientesinternados + 1;
+    			
+    			
+    		}
+    		
+			
+		}
+    	
+    	
+    	
+    	
+		return qtdpacientesinternados;
+	}
+
+
+
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView Home(Locale locale, Model model) {
        
     	

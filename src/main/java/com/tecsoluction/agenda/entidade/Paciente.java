@@ -104,6 +104,12 @@ public class Paciente  extends BaseEntity implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "idpatologia"))
     private Set<Patologia> patologias;
     
+    @Column(name = "ALTA", nullable=true)
+    private boolean alta;
+    
+    @Column(name = "INTERNACAO", nullable=true)
+    private boolean internacao;
+    
 	
 
 //    @JsonIgnore

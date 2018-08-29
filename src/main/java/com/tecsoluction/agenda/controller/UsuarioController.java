@@ -45,6 +45,8 @@ public class UsuarioController extends AbstractController<Usuario> {
 	 
 	 private Usuario usuario ;
 	 
+	 private String filename="avatar_usu.jpg";
+	 
 	
 	
     public UsuarioController(RoleServicoImpl roleimpl,UsuarioServicoImpl usuimpl) {
@@ -160,7 +162,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 
         String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/usuario/");
         
-        String filename = file.getOriginalFilename();
+        this.filename = file.getOriginalFilename();
         
         
 //        heroku não funfa com essas barras

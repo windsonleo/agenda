@@ -62,6 +62,8 @@ public class PacienteController extends AbstractController<Paciente> {
 	 private UsuarioServicoImpl usuarioServico;
 	 
 	 private PatologiaServicoImpl patologiaServico;
+	 
+	 private String filename="avatar_pac.jpg";
 	
 	
     public PacienteController(PacienteServicoImpl usuimpl,EnderecoServicoImpl end,UsuarioServicoImpl usuarioser,PatologiaServicoImpl pato) {
@@ -494,7 +496,7 @@ public class PacienteController extends AbstractController<Paciente> {
 
         String path = session.getServletContext().getRealPath("/WEB-INF/classes/static/img/paciente/");
         
-        String filename = file.getOriginalFilename();
+        this.filename = file.getOriginalFilename();
         
 //        String caminho = path + "\\" + filename;
         

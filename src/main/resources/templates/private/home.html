@@ -149,9 +149,60 @@
 <!--             </div> -->
 <!--           </div> -->
 
-         <div class="box box-success">
+<!--          <div class="box box-success"> -->
+<!--             <div class="box-header with-border"> -->
+<!--               <h3 class="box-title">Visitas no Mapa</h3> -->
+
+<!--               <div class="box-tools pull-right"> -->
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> -->
+<!--                 </button> -->
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--             /.box-header -->
+<!--             <div class="box-body no-padding"> -->
+<!--               <div class="row"> -->
+<!--                 <div class="col-md-9 col-sm-8"> -->
+<!--                   <div class="pad"> -->
+<!--                     Map will be created here -->
+<!--                     <div id="world-map-markers" style="height: 325px;"></div> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--                 /.col -->
+<!--                 <div class="col-md-3 col-sm-4"> -->
+<!--                   <div class="pad box-pane-right bg-blue" style="min-height: 280px"> -->
+<!--                     <div class="description-block margin-bottom"> -->
+<!--                       <div class="sparkbar pad" data-color="#fff"></div> -->
+<!--                       <h5 class="description-header">8390</h5> -->
+<!--                       <span class="description-text">Visitas</span> -->
+<!--                     </div> -->
+<!--                     /.description-block -->
+<!--                     <div class="description-block margin-bottom"> -->
+<!--                       <div class="sparkbar pad" data-color="#fff"></div> -->
+<!--                       <h5 class="description-header">30%</h5> -->
+<!--                       <span class="description-text">Referrals</span> -->
+<!--                     </div> -->
+<!--                     /.description-block -->
+<!--                     <div class="description-block"> -->
+<!--                       <div class="sparkbar pad" data-color="#fff"></div> -->
+<!--                       <h5 class="description-header">70%</h5> -->
+<!--                       <span class="description-text">Organic</span> -->
+<!--                     </div> -->
+<!--                     /.description-block -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--                 /.col -->
+<!--               </div> -->
+<!--               /.row -->
+<!--             </div> -->
+<!--             /.box-body -->
+<!--           </div> -->
+
+
+
+<div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Visitas no Mapa</h3>
+              <h3 class="box-title">Progresso Tratamento</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -160,42 +211,40 @@
               </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <div class="row">
-                <div class="col-md-9 col-sm-8">
-                  <div class="pad">
-                    <!-- Map will be created here -->
-                    <div id="world-map-markers" style="height: 325px;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-md-3 col-sm-4">
-                  <div class="pad box-pane-right bg-blue" style="min-height: 280px">
-                    <div class="description-block margin-bottom">
-                      <div class="sparkbar pad" data-color="#fff"></div>
-                      <h5 class="description-header">8390</h5>
-                      <span class="description-text">Visitas</span>
-                    </div>
-                    <!-- /.description-block -->
-                    <div class="description-block margin-bottom">
-                      <div class="sparkbar pad" data-color="#fff"></div>
-                      <h5 class="description-header">30%</h5>
-                      <span class="description-text">Referrals</span>
-                    </div>
-                    <!-- /.description-block -->
-                    <div class="description-block">
-                      <div class="sparkbar pad" data-color="#fff"></div>
-                      <h5 class="description-header">70%</h5>
-                      <span class="description-text">Organic</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                </div>
-                <!-- /.col -->
+            <div class="box-body">
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                  <tr>
+                  <th>Id</th>
+                    <th>Paciente</th>
+                    <th>Inicio</th>
+                    <th>Fim</th>
+                    <th>Status</th>
+                    <th>Plano</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="paciente: ${pacientes}">
+                    <td><a href="#" th:utext="${paciente.id}">OR9842</a></td>
+                    <td th:utext="${paciente.nome}">Call of Duty IV</td>
+                     <td th:utext="${paciente.datainicio}">Call of Duty IV</td>
+                      <td th:utext="${paciente.datafim}">Call of Duty IV</td>
+                    <td><span class="label label-success" >Andamento</span></td>
+                     <td th:utext="${paciente.plano}">Call of Duty IV</td>
+                  </tr>
+                 
+                  </tbody>
+                </table>
               </div>
-              <!-- /.row -->
+              <!-- /.table-responsive -->
             </div>
             <!-- /.box-body -->
+            <div class="box-footer clearfix">
+<!--               <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a> -->
+              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">Visualizar Todos</a>
+            </div>
+            <!-- /.box-footer -->
           </div>
         
 
@@ -484,8 +533,8 @@
             <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Inventory</span>
-              <span class="info-box-number">5,200</span>
+              <span class="info-box-text">Internacoes</span>
+              <span class="info-box-number" th:text="${qtdpacientesinternados}">5,200</span>
 
               <div class="progress">
                 <div class="progress-bar" style="width: 50%"></div>
@@ -501,8 +550,8 @@
             <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Mentions</span>
-              <span class="info-box-number">92,050</span>
+              <span class="info-box-text">Altas</span>
+              <span class="info-box-number" th:text="${qtdpacientesaltas}">92,050</span>
 
               <div class="progress">
                 <div class="progress-bar" style="width: 20%"></div>
@@ -518,8 +567,8 @@
             <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Downloads</span>
-              <span class="info-box-number">114,381</span>
+              <span class="info-box-text">Patologias</span>
+              <span class="info-box-number" th:text="${#lists.size(patologias)}">114,381</span>
 
               <div class="progress">
                 <div class="progress-bar" style="width: 70%"></div>
@@ -535,7 +584,7 @@
             <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Direct Messages</span>
+              <span class="info-box-text">Messages</span>
               <span class="info-box-number">163,921</span>
 
               <div class="progress">
