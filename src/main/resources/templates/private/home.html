@@ -222,16 +222,35 @@
                     <th>Fim</th>
                     <th>Status</th>
                     <th>Plano</th>
+                     <th>Total Dias</th>
+                     <th>Dias Restantes</th>
                   </tr>
                   </thead>
-                  <tbody>
+                  <tbody th:remove="all-but-first">
                   <tr th:each="paciente: ${pacientes}">
                     <td><a href="#" th:utext="${paciente.id}">OR9842</a></td>
                     <td th:utext="${paciente.nome}">Call of Duty IV</td>
                      <td th:utext="${#dates.format(paciente.datainicio,'dd-MM-yyyy')}">Call of Duty IV</td>
                       <td th:utext="${#dates.format(paciente.datafim,'dd-MM-yyyy')}">Call of Duty IV</td>
-                    <td><span class="label label-success" >Andamento</span></td>
+                   
+                   <td th:switch="${paciente.statustratamento}" >
+                    	<span  th:case="${T(com.tecsoluction.agenda.util.StatusTratamento).ANDAMENTO}" class="label label-primary"  >ANDAMENTO</span>
+                    	<span   th:case="${T(com.tecsoluction.agenda.util.StatusTratamento).FINALIZADO}" class="label label-success" >FINALIZADO</span>
+                    	<span   th:case="${T(com.tecsoluction.agenda.util.StatusTratamento).INTERROMPIDO}" class="label label-default" >INTERROMPIDO</span>
+                    	<span   th:case="${T(com.tecsoluction.agenda.util.StatusTratamento).CANCELADO}" class="label label-warning" >CANCELADO</span>
+                    	<span   th:case="${T(com.tecsoluction.agenda.util.StatusTratamento).NAOAUTORIZADO}" class="label label-danger" >NAO AUTORIZADO</span>
+                    	</td>
+                 
+                    
                      <td th:utext="${paciente.plano}">Call of Duty IV</td>
+                     <td >
+                     <i class="fa fa-clock-o" th:utext="' ' + ${paciente.DiasTotais()}" >  
+                 	 </i> 
+                     
+                     </td>
+                     <td ><i class="fa fa-clock-o" th:utext="' ' + ${paciente.DiasRestantes()}">  
+                  </i> 
+                     </td>
                   </tr>
                  
                   </tbody>
@@ -282,12 +301,23 @@
                   <!-- todo text -->
                   <span class="text" th:text="${atividade.descricao}">Design a nice theme</span>
                   <!-- Emphasis label -->
-                  <small class="label label-danger" th:text="${atividade.status}"><i class="fa fa-clock-o"></i> 2 mins</small>
+<!--                   <small class="label label-warning" th:text="${atividade.status}"> pendente</small> -->
+                  
+                  
+                  <label class="label label-primary" > 
+                  <i class="fa fa-clock-o" th:text="' ' + ${atividade.HorasRestantes()} + '  '">  
+                  </i> Mins 
+                  </label>
+                  
+                  
                   <!-- General tools such as edit or delete-->
+                 
                   <div class="tools">
                     <a th:href="@{/atividade/editar(id=${atividade.id})}"><i class="fa fa-edit"></i></a>
                     <a th:href="@{/atividade/excluir(id=${atividade.id})}"><i class="fa fa-trash-o"></i></a>
                   </div>
+                  
+                  
                 </li>
                 
                 
@@ -306,7 +336,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 		
-		 <form th:action="@{/atividade/adicionar}" ModelAttribute="atividade" method="GET">
+		 <form th:action="@{/atividade/adicionar}" th:object="${atividade}" ModelAttribute="atividade" method="GET">
 		 
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -324,7 +354,7 @@
                     <i class="fa fa-pencil-square-o"></i>
                   </div>
 							
-										<input id="descricao" name="descricao" class="form-control android" type="text"  th:value="${atividade.descricao}" placeholder="Digite a Descricao" />
+										<input id="descricao" autocomplete="off" name="descricao" class="form-control android" type="text"  th:value="${atividade.descricao}" placeholder="Digite a Descricao" />
 							
 			                </div>
 			                
@@ -336,7 +366,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar-check-o"></i>
                   </div>
-                                    <input id="datainicio" class="form-control" name="datainicio" type="text" th:value="${atividade.datainicio}"
+                                    <input id="datainicio" autocomplete="off" class="form-control" name="datainicio" type="text" th:field="*{datainicio}"
                                            placeholder="Data Inicio"> </input>
                                 </div>
                             </div>
@@ -347,10 +377,28 @@
                   <div class="input-group-addon">
                     <i class="fa  fa-calendar-times-o"></i>
                   </div>
-                                    <input id="datafim" class="form-control" name="datafim" type="text" th:value="${atividade.datafim}"
+                                    <input id="datafim" class="form-control" autocomplete="off" name="datafim" type="text" th:field="*{datafim}"
                                            placeholder="Data Termino"> </input>
                                 </div>
                             </div>
+                            
+                            
+                            
+                                <div class="bootstrap-timepicker">
+                <div class="form-group">
+                  <label>Time picker:</label>
+                            <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa  fa-calendar-times-o"></i>
+                  </div>
+                                    <input id="hora" class="form-control timepicker" autocomplete="off" name="hora" type="text" th:field="*{hora}"
+                                           placeholder="Hora Inicio"> </input>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            
+                           
                             
                             
           <div class="form-group label-floating ">
@@ -358,8 +406,10 @@
                   <div class="input-group-addon">
                     <i class="fa fa-tag"></i>
                   </div>
+                  
+                  <label>Escolha o Status</label>
 
-                                    <select id="status" name="status" class="form-control">
+                                    <select id="status" name="status" class="form-control select2">
                                         <optgroup label="Escolha o Status">
 
                                             <option th:value="${atividade.status}" th:selected="selected"
@@ -531,7 +581,7 @@
           
           <div class="info-box bg-yellow">
             <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-
+<a href="#"></a>
             <div class="info-box-content">
               <span class="info-box-text">Internacoes</span>
               <span class="info-box-number" th:text="${qtdpacientesinternados}">5,200</span>
@@ -547,8 +597,8 @@
           </div>
           <!-- /.info-box -->
           <div class="info-box bg-green">
-            <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
-
+            <span class="info-box-icon"> <i class="ion ion-ios-heart-outline"></i> </span>
+<a href="#"> </a>
             <div class="info-box-content">
               <span class="info-box-text">Altas</span>
               <span class="info-box-number" th:text="${qtdpacientesaltas}">92,050</span>
@@ -564,8 +614,8 @@
           </div>
           <!-- /.info-box -->
           <div class="info-box bg-red">
-            <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
-
+            <span class="info-box-icon">  <i class="ion ion-ios-cloud-download-outline"></i> </span> 
+			<a href="#" > </a>
             <div class="info-box-content">
               <span class="info-box-text">Patologias</span>
               <span class="info-box-number" th:text="${#lists.size(patologias)}">114,381</span>
@@ -584,7 +634,7 @@
             <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Messages</span>
+              <span class="info-box-text">Mensagens</span>
               <span class="info-box-number">163,921</span>
 
               <div class="progress">
@@ -627,6 +677,17 @@
 		  <!-- Page specific script -->
 		  
 		  /*<![CDATA[*/
+			  
+			   $(function () {
+			  
+			   $(".select2").select2();
+			   
+			   });
+		  
+
+			    $(".timepicker").timepicker({
+			        showInputs: false
+			      });
 			  
 	    $('#calendar').datepicker({
 	    	format: 'dd/mm/yyyy',
