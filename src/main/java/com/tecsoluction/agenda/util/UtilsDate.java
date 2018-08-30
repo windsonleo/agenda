@@ -11,8 +11,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 
-import javafx.scene.control.DatePicker;
-
 public class UtilsDate {
 	
 	
@@ -20,16 +18,16 @@ public class UtilsDate {
 	
 	
 	
-	 public static Date toDate(DatePicker datePicker) {
-	        if(datePicker.getValue() == null){
-	            return null;
-	        }
-	        LocalDate ld = datePicker.getValue();
-	        Instant instant = ld.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
-	        Date date = Date.from(instant);
-
-	        return date;
-	    }
+//	 public static Date toDate(DatePicker datePicker) {
+//	        if(datePicker.getValue() == null){
+//	            return null;
+//	        }
+//	        LocalDate ld = datePicker.getValue();
+//	        Instant instant = ld.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
+//	        Date date = Date.from(instant);
+//
+//	        return date;
+//	    }
 
 	    /**
 	     * Converte Date para LocalDate
