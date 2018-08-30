@@ -357,6 +357,34 @@
 
                                 </div>
                             </div>
+                            
+                              <div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-folder"></i>
+                  </div>
+  <label>Escolha Status do Tratamento</label>
+                                    <select id="statustratamento" name="statustratamento" class="form-control select2">
+                                        <optgroup label="Escolha Status do Tratamento">
+
+                                            <option th:value="${paciente.statustratamento}" th:selected="selected"
+                                            th:utext="${paciente.statustratamento}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="plano: ${statustratamento}" th:value="${plano}" th:utext="${plano}"> planos </option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
 <!--                             </div> -->
                             
                                                         <div class="form-group label-floating ">

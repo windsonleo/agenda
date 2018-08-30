@@ -117,79 +117,6 @@
 				 <form th:action="@{/paciente/add}" ModelAttribute="paciente" method="POST" th:object="${paciente}">      
       
                   
-<!--                             <div class="card card-profile"> -->
-                               
-<!--                                 <div class="card-avatar" th:if="${filename}"> -->
-<!--                                     <a href="#pablo"> -->
-<!--                                        <img class="img" src="/img/vazio.jpg"  th:src="${filename}"/> --> 
-<!--                                     <img class="img" th:src="@{/img/paciente/{fotoc}(fotoc=${filename})}"/> -->
-                                    
-<!--                                     </a> -->
-                                    
-                                    
-<!--                                 </div> -->
-                           
-<!--                            <div class="card-avatar" th:unless="${filename}"> -->
-<!--                                     <a href="#pablo"> -->
-<!--                                          <img class="img" src="/img/vazio.jpg"  th:src="${filename}"/> --> 
-<!--                                    <img class="img" th:src="@{/img/paciente/vazio.jpg}"/> --> 
-                                    
-<!--                                     </a> -->
-                                    
-                                    
-<!--                                 </div> -->
-                                
-                               
-                                
-<!--                                   <div class="card-avatar" th:if="${paciente.foto}"> -->
-                                     
-<!--                                      <a href="#pablo"> -->
-<!--                                     <img class="img" th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}"/> -->
-<!--                                    </a> -->
-                            
-<!-- 								</div> -->
-								
-<!-- 							<div class="card-avatar" th:unless="${paciente.foto}"> -->
-                                     
-<!--                                      <a href="#pablo"> -->
-<!--                                     <img class="img" th:src="@{/img/paciente/vazio.jpg}"/> -->
-<!--                                    </a> -->
-                            
-<!-- 								</div> -->
-								
-								
-								
-<!--                             	<div class="form-group  is-fileinput"> -->
-<!-- 									    <input type="file" id="file" multiple="multiple" name="file"/> -->
-<!-- 									    <div class="input-group"> -->
-<!-- 									      <input type="text" readonly="readonly" class="form-control" placeholder="Selecione a Foto..." />  -->
-<!-- 									        <span class="input-group-btn input-group-sm"> -->
-<!-- 									          <button type="button" class="btn btn-fab btn-fab-mini"> -->
-<!-- 									            <i class="material-icons">attach_file</i> -->
-<!-- 									          </button> -->
-<!-- 									        </span> -->
-									   
-<!-- 									   	<button type="submit"  class="btn btn-info btn-round btn-md">Salvar Foto</button> -->
-									   
-<!-- 									    </div> -->
-								
-<!-- 									</div> -->
-                            
-                            
-<!--                             </div> -->
-<!--                         </div> -->
-                             
-									
-                                       
-<!--               <span class="material-input"></span> -->
-                         		
-                                    
-<!--               </form> -->
-              
-<!--               </div>  -->
-                             
-<!--           <form class="form-horizonta" method="post" -->
-<!--                              th:action="@{/paciente/add}"> -->
                              
              <div class="form group">               
 			<div class="checkbox">
@@ -233,19 +160,7 @@
                                            placeholder="Nome"> </input>
                                 </div>
                             </div>
-<!--                             </div> -->
-                            
-                            
-                            
-<!--                              <div class="form-group label-floating "> -->
-<!--                             <div class="control-group"> -->
-<!--                                 <label class="control-label">Email</label> -->
-<!--                                 <div class="controls"> -->
-<!--                                     <input id="email" class="form-control" name="email" type="text" th:value="${paciente.email}" -->
-<!--                                            placeholder=""> </input> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-<!--                             </div> -->
+
                             
                            <div class="form-group label-floating ">
 <!--                             <div class="control-group"> -->
@@ -268,17 +183,7 @@
                                            placeholder="Cpf"> </input>
                                 </div>
                             </div>
-<!--                             </div> -->
-                            
-<!--                             <div class="form-group label-floating "> -->
-<!--                             <div class="control-group"> -->
-<!--                                 <label class="control-label">RG</label> -->
-<!--                                 <div class="controls"> -->
-<!--                                     <input id="rg" class="form-control" name="rg" type="text" th:value="${paciente.rg}" -->
-<!--                                            placeholder=""> </input> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-<!--                             </div> -->
+
                             
                                                         
                             <div class="form-group label-floating ">
@@ -292,15 +197,7 @@
                                            placeholder="Data Nascimento" />
                                 </div>
                                 </div>
-<!--                             </div> -->
-                            
-<!--                     <div class="input-group date"> -->
-<!--                   <div class="input-group-addon"> -->
-<!--                     <i class="fa fa-calendar"></i> -->
-<!--                   </div> -->
-<!--                   <input type="text" class="form-control pull-right" id="datepicker"/> -->
-<!--                 </div> -->
-<!--                             </div> -->
+
                             
                             
 							
@@ -332,7 +229,6 @@
 
                                 </div>
                             </div>
-<!--                             </div> -->
                             
                             							<div class="form-group label-floating ">
                              <div class="input-group">
@@ -361,6 +257,36 @@
 
                                 </div>
                             </div>
+                            
+                            <div class="form-group label-floating ">
+                             <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-folder"></i>
+                  </div>
+  <label>Escolha Status do Tratamento</label>
+                                    <select id="statustratamento" name="statustratamento" class="form-control select2">
+                                        <optgroup label="Escolha Status do Tratamento">
+
+                                            <option th:value="${paciente.statustratamento}" th:selected="selected"
+                                            th:utext="${paciente.statustratamento}">
+                                            
+                                            
+                                            </option>
+
+                                                
+                                             	<option th:each="plano: ${statustratamento}" th:value="${plano}" th:utext="${plano}"> planos </option>
+					           				      	
+				           				   		
+
+
+                                        </optgroup>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            
+                            
 <!--                             </div> -->
                             
                                                         <div class="form-group label-floating ">
@@ -464,22 +390,7 @@
             
             <div class="box-footer">
               <div class="row">
-<!--                 <div class="col-sm-4 border-right"> -->
-<!--                   <div class="description-block"> -->
-<!--                     <h5 class="description-header">3,200</h5> -->
-<!--                     <span class="description-text">SALES</span> -->
-<!--                   </div> -->
-<!--                   /.description-block -->
-<!--                 </div> -->
-                <!-- /.col -->
-<!--                 <div class="col-sm-4 border-right"> -->
-<!--                   <div class="description-block"> -->
-<!--                     <h5 class="description-header">13,000</h5> -->
-<!--                     <span class="description-text">FOLLOWERS</span> -->
-<!--                   </div> -->
-<!--                   /.description-block -->
-<!--                 </div> -->
-                <!-- /.col -->
+
                 <div class="col-sm-12">
                   <div class="description-block">
                     <div class="form-group">

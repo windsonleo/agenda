@@ -228,7 +228,7 @@
                   </thead>
                   <tbody th:remove="all-but-first">
                   <tr th:each="paciente: ${pacientes}">
-                    <td><a href="#" th:utext="${paciente.id}">OR9842</a></td>
+                    <td><a th:href="@{/paciente/progresso(id=${paciente.id})}" th:utext="${paciente.id}">OR9842</a></td>
                     <td th:utext="${paciente.nome}">Call of Duty IV</td>
                      <td th:utext="${#dates.format(paciente.datainicio,'dd-MM-yyyy')}">Call of Duty IV</td>
                       <td th:utext="${#dates.format(paciente.datafim,'dd-MM-yyyy')}">Call of Duty IV</td>
@@ -579,73 +579,74 @@
           </div>
           <!-- /.box -->
           
-          <div class="info-box bg-yellow">
-            <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-<a href="#"></a>
-            <div class="info-box-content">
-              <span class="info-box-text">Internacoes</span>
-              <span class="info-box-number" th:text="${qtdpacientesinternados}">5,200</span>
+          
+          
+           <div class="col-lg-12 col-xs-9">
+          <!-- small box -->
+          <div class="small-box bg-teal">
+            <div class="inner">
+              <h3 th:text="${qtdpacientesinternados}">150</h3>
 
-              <div class="progress">
-                <div class="progress-bar" style="width: 50%"></div>
-              </div>
-                  <span class="progress-description">
-                    50% Increase in 30 Days
-                  </span>
+              <p>Internacoes</p>
             </div>
-            <!-- /.info-box-content -->
+            <div class="icon">
+              <i class="ion ion-ios-pricetag-outline"></i>
+            </div>
+            <a th:href="@{/paciente/internacao}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-green">
-            <span class="info-box-icon"> <i class="ion ion-ios-heart-outline"></i> </span>
-<a href="#"> </a>
-            <div class="info-box-content">
-              <span class="info-box-text">Altas</span>
-              <span class="info-box-number" th:text="${qtdpacientesaltas}">92,050</span>
+        </div>
 
-              <div class="progress">
-                <div class="progress-bar" style="width: 20%"></div>
-              </div>
-                  <span class="progress-description">
-                    20% Increase in 30 Days
-                  </span>
+          
+           <div class="col-lg-12 col-xs-9">
+          <!-- small box -->
+          <div class="small-box bg-navy">
+            <div class="inner">
+              <h3 th:text="${qtdpacientesaltas}">150</h3>
+
+              <p>Altas</p>
             </div>
-            <!-- /.info-box-content -->
+            <div class="icon">
+              <i class="ion ion-ios-heart-outline"></i>
+            </div>
+            <a th:href="@{/paciente/altas}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-red">
-            <span class="info-box-icon">  <i class="ion ion-ios-cloud-download-outline"></i> </span> 
-			<a href="#" > </a>
-            <div class="info-box-content">
-              <span class="info-box-text">Patologias</span>
-              <span class="info-box-number" th:text="${#lists.size(patologias)}">114,381</span>
+        </div>
 
-              <div class="progress">
-                <div class="progress-bar" style="width: 70%"></div>
-              </div>
-                  <span class="progress-description">
-                    70% Increase in 30 Days
-                  </span>
+          
+                    <div class="col-lg-12 col-xs-9">
+          <!-- small box -->
+          <div class="small-box bg-maroon">
+            <div class="inner">
+              <h3 th:text="${#lists.size(patologias)}">150</h3>
+
+              <p>Patologias</p>
             </div>
-            <!-- /.info-box-content -->
+            <div class="icon">
+              <i class="ion ion-ios-cloud-download-outline"></i>
+            </div>
+            <a th:href="@{/patologia/movimentacao}" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
+        </div>
+          
+          
           <!-- /.info-box -->
-          <div class="info-box bg-aqua">
-            <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+          
+          <div class="col-lg-12 col-xs-9">
+          <!-- small box -->
+          <div class="small-box bg-purple">
+            <div class="inner">
+              <h3  th:text="${#lists.size(atividades)}">150</h3>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Mensagens</span>
-              <span class="info-box-number">163,921</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 40%"></div>
-              </div>
-                  <span class="progress-description">
-                    40% Increase in 30 Days
-                  </span>
+              <p>Mensagens</p>
             </div>
-            
+            <div class="icon">
+              <i class="ion-ios-chatbubble-outline"></i>
             </div>
+            <a href="#" class="small-box-footer">Mais info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+          
+        
 
 
             

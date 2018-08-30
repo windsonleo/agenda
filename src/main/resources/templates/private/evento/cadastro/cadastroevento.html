@@ -112,7 +112,14 @@
               <!-- /input-group -->
               
               </form>
+              
+              
             </div>
+            
+            
+           <a th:href="@{/evento/movimentacao}" class="btn btn-info btn-raised btn-block"><b>Movimentacao</b></a>
+            
+            
           </div>
         </div>
         <!-- /.col -->
@@ -208,6 +215,8 @@ $(function () {
 
         // store the Event Object in the DOM element so we can get to it later
         $(this).data('eventObject', eventObject);
+        
+//         console.log("Hello ele!", eventObject );
 
         // make the event draggable using jQuery UI
         $(this).draggable({
@@ -217,6 +226,8 @@ $(function () {
         });
 
       });
+      
+     
     }
 
     ini_events($('#external-events div.external-event'));
@@ -252,6 +263,7 @@ $(function () {
      
     //Date for the calendar events (dummy data)
     var date = new Date();
+    
     var d = date.getDate(),
         m = date.getMonth(),
         y = date.getFullYear();
@@ -309,13 +321,17 @@ $(function () {
        
         events: { // you can also specify a plain string like 'json/events.json'
 //         url: '/agenda/evento/listar/',
+        
+        
  		url: '/evento/listar/',
         error: function() {
           $('#script-warning').show();
         }
+        
+		
       },
     	  
-    	  
+     
 
 
 // 	defaultDate: dataAtual,		
@@ -337,13 +353,19 @@ $(function () {
 
         // assign it the date that was reported
         copiedEventObject.start = date;
+//         copiedEventObject.end = new Date(date.getFullYear(),date.getMonth(),date.getHours() + 2,date.getMinutes(),date.getSeconds(),date.getMilliseconds());
         copiedEventObject.allDay = allDay;
         copiedEventObject.backgroundColor = $(this).css("background-color");
         copiedEventObject.borderColor = $(this).css("border-color");
+        
+        
+       
 
         // render the event on the calendar
         // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+        $('#calendar').fullCalendar('eventRender', copiedEventObject, true);
+        
+//         console.log("Hello copied!" , copiedEventObject );
 
         // is the "remove after drop" checkbox checked?
         if ($('#drop-remove').is(':checked')) {
@@ -351,10 +373,38 @@ $(function () {
           $(this).remove();
         }
 
+      },
+      
+      
+      
+      eventRender: function (event, element) {
+          element.attr('href', 'javascript:void(0);');
+          element.click(function() {
+              $("#start").html(moment(event.start).format('MMM Do h:mm A'));
+              $("#end").html(moment(event.end).format('MMM Do h:mm A'));
+              $("#title").html(event.title);
+              
+              
+              console.log("Hello events!" ,event ); 
+              
+//               alert('teste:');
+              
+              
+              
+              
+//               $("#eventLink").attr('href', event.url);
+//               $("#eventContent").dialog({ modal: true, title: event.title, width:350});
+          });
       }
+      
+      
+      
+
+      
     });
 
     /* ADDING EVENTS */
+    
     var currColor = "#3c8dbc"; //Red by default
     //Color chooser button
     var colorChooser = $("#color-chooser-btn");
@@ -371,12 +421,21 @@ $(function () {
 //       e.preventDefault();
       //Get value and make sure it is not null
       var val = $("#title").val();
+     
       if (val.length == 0) {
         return;
       }
       
       $("#backgroundColor").val(currColor);
       $("#borderColor").val(currColor);
+//       $("#start").val(date);
+//       $("#end").val(date);
+      
+//       $("#start").html(moment(event.start).format('MMM Do h:mm A'));
+//       $("#end")..html(moment(event.end).format('MMM Do h:mm A'));
+      
+      
+//       $("#borderColor").val(currColor);
       
 //       $('.external-event bg-green').css({"background-color": currColor, "border-color": currColor});
       
@@ -388,6 +447,7 @@ $(function () {
       event.css({"background-color": currColor, "border-color": currColor, "color": "#fff"}).addClass("external-event");
       event.html(val);
       $('#external-events').prepend(event);
+      
 
       //Add draggable funtionality
       ini_events(event);
@@ -426,6 +486,10 @@ $(function () {
 //             }
 //         });
 //     }
+    
+//     console.log("Hello world!");
+    
+//     alert('teste:');
   
   });
 	        

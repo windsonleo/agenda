@@ -89,37 +89,6 @@ public class EventoController extends AbstractController<Evento> {
     @RequestMapping(value = "/adicionar", method = RequestMethod.POST)
     public ModelAndView Adicionar(HttpServletRequest request,@ModelAttribute Evento model) {
 
-//        UUID idf = UUID.fromString(request.getParameter("id"));
-//
-//        ModelAndView profileevento = new ModelAndView("/public/profile");
-//
-//        Evento evento = getservice().findOne(idf);
-//
-//        profileevento.addObject("evento", evento);
-    	
-//    	Date datini = new Date();
-//    	
-//    	Date datfim = new Date();
-//    	
-//		Date datini2 = null;
-//	  	Date datfim2 = null;
-//    	
-//    	DateFormat datformat = new SimpleDateFormat("yyyy-MM-dd");
-//    	
-//    	String dataini = datformat.format(datini);
-//
-//    	String datafim = datformat.format(datfim);
-//    	
-//    	
-//    	try {
-//    		
-//			 datini2 = datformat.parse(dataini);
-//		  	 datfim2 = datformat.parse(datafim);
-//		  	
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
     	
     	Calendar calendar = Calendar.getInstance();//cria o obj calendar e atribui a hora e data do sistema
     	Date data = calendar.getTime();//transforma o obj calendar em obj Date

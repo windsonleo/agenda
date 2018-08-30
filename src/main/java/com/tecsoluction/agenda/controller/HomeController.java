@@ -60,7 +60,7 @@ public class HomeController {
     
     private StatusAtividade status[];
     
-    private StatusTratamento statustratamento[];
+//    private StatusTratamento statustratamento[];
     
 	
     private List<Atividade> atividades = new ArrayList<Atividade>();
@@ -217,8 +217,11 @@ public class HomeController {
          
          status = StatusAtividade.values();
          
+         
+         
          home.addObject("atividade", atividade);
          home.addObject("status", status);
+//         home.addObject("statustratamento", statustratamento);
 
 
 

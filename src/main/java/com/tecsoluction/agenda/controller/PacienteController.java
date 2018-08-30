@@ -2,6 +2,7 @@ package com.tecsoluction.agenda.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -36,6 +37,7 @@ import com.tecsoluction.agenda.servico.PacienteServicoImpl;
 import com.tecsoluction.agenda.servico.PatologiaServicoImpl;
 import com.tecsoluction.agenda.servico.UsuarioServicoImpl;
 import com.tecsoluction.agenda.util.PlanoSaude;
+import com.tecsoluction.agenda.util.StatusTratamento;
 import com.tecsoluction.agenda.util.TipoTerapia;
 
 
@@ -64,6 +66,14 @@ public class PacienteController extends AbstractController<Paciente> {
 	 private PatologiaServicoImpl patologiaServico;
 	 
 	 private String filename="avatar_pac.jpg";
+	 
+	 private StatusTratamento statustratamento[];
+	 
+	  private List<Paciente> pacientes = new ArrayList<Paciente>();
+	 
+	    private List<Paciente> pacientesAltas = new ArrayList<Paciente>();
+	    
+	    private List<Paciente> pacientesInternados = new ArrayList<Paciente>();
 	
 	
     public PacienteController(PacienteServicoImpl usuimpl,EnderecoServicoImpl end,UsuarioServicoImpl usuarioser,PatologiaServicoImpl pato) {
@@ -99,10 +109,15 @@ public class PacienteController extends AbstractController<Paciente> {
     	
     	planossaude = PlanoSaude.values();
     	
-    
+    	statustratamento = StatusTratamento.values();
     		
-    		paciente = new Paciente();
-    		
+    	paciente = new Paciente();
+    	
+    	
+    	 pacientes = getservice().findAll();
+    	 
+    	 VerificarAltas(pacientes);
+    	 VerificarInternacoes(pacientes);
     	
     	
 
@@ -116,6 +131,9 @@ public class PacienteController extends AbstractController<Paciente> {
         model.addAttribute("paciente", paciente);
         model.addAttribute("planossaude", planossaude);
         model.addAttribute("filename", filename);
+        model.addAttribute("statustratamento", statustratamento);
+        model.addAttribute("pacientesAltas", pacientesAltas);
+        model.addAttribute("pacientesInternados", pacientesInternados);
 
         
 
@@ -544,6 +562,187 @@ public class PacienteController extends AbstractController<Paciente> {
        return new ModelAndView("redirect:/paciente/cadastro").addObject("paciente", paciente);
 
     }
+    
+    
+    
+    @RequestMapping(value = "/progresso", method = RequestMethod.GET)
+    public ModelAndView ProgressoPaciente(HttpServletRequest request) {
+
+        UUID idf = UUID.fromString(request.getParameter("id"));
+
+        ModelAndView profilepaciente = new ModelAndView("/private/paciente/progresso");
+
+        this.paciente = getservice().findOne(idf);
+        
+//	   	 Usuario usuario;
+//	 	
+//	   	 String mail =SecurityContextHolder.getContext().getAuthentication().getName();
+//	        
+//	   	 usuario = usuarioServico.findByEmail(mail);
+//        
+//        Evolucao evolucao = new Evolucao();
+//        
+//        evolucao.setUsuario(usuario);
+//        evolucao.setData(new Date());
+//        evolucao.setDescricao(request.getParameter("descricao"));
+//        
+//        paciente.addEvolucao(evolucao);
+//        
+//        getservice().edit(paciente);
+//        
+//        
+//        
+//        Date datanow = new Date();
+        
+        List<Patologia> patologias = patologiaServico.findAll();
+
+        profilepaciente.addObject("paciente", paciente);
+        profilepaciente.addObject("patologias", patologias);
+        profilepaciente.addObject("evolucao", new Evolucao());
+        
+        
+//        profilepaciente.addObject("datanow", datanow);
+//        profilepaciente.addObject("evolucao", new Evolucao());
+
+        return profilepaciente;
+    }
+    
+    private void VerificarAltas(List<Paciente> pacientes2) {
+		
+    	
+    	pacientesAltas = new ArrayList<Paciente>();
+    	
+
+    	for (Paciente paciente : pacientes2) {
+    		
+    		
+    		if(paciente.isAlta()){
+    			
+    			pacientesAltas.add(paciente);
+    			
+    			
+    		}
+    		
+			
+		}
+    	
+    	
+
+	}
+    
+    
+    private void VerificarInternacoes(List<Paciente> pacientes2) {
+		
+    	
+    	pacientesInternados = new ArrayList<Paciente>();
+    	
+   
+
+    	for (Paciente paciente : pacientes2) {
+    		
+    		
+    		if(paciente.isInternacao()){
+    			
+    			pacientesInternados.add(paciente);
+    			
+    			
+    		}
+    		
+			
+		}
+    	
+    	
+    		}
+    
+    
+    
+    
+    @RequestMapping(value = "/altas", method = RequestMethod.GET)
+    public ModelAndView AltaPaciente(HttpServletRequest request) {
+
+//        UUID idf = UUID.fromString(request.getParameter("id"));
+
+        ModelAndView profilepaciente = new ModelAndView("/private/paciente/alta");
+
+//        this.paciente = getservice().findOne(idf);
+        
+//	   	 Usuario usuario;
+//	 	
+//	   	 String mail =SecurityContextHolder.getContext().getAuthentication().getName();
+//	        
+//	   	 usuario = usuarioServico.findByEmail(mail);
+//        
+//        Evolucao evolucao = new Evolucao();
+//        
+//        evolucao.setUsuario(usuario);
+//        evolucao.setData(new Date());
+//        evolucao.setDescricao(request.getParameter("descricao"));
+//        
+//        paciente.addEvolucao(evolucao);
+//        
+//        getservice().edit(paciente);
+//        
+//        
+//        
+//        Date datanow = new Date();
+        
+//        List<Patologia> patologias = patologiaServico.findAll();
+
+//        profilepaciente.addObject("paciente", paciente);
+//        profilepaciente.addObject("patologias", patologias);
+//        profilepaciente.addObject("evolucao", new Evolucao());
+        
+        
+//        profilepaciente.addObject("datanow", datanow);
+//        profilepaciente.addObject("evolucao", new Evolucao());
+
+        return profilepaciente;
+    } 
+    
+    
+    @RequestMapping(value = "/internacao", method = RequestMethod.GET)
+    public ModelAndView InternacaoPaciente(HttpServletRequest request) {
+
+//        UUID idf = UUID.fromString(request.getParameter("id"));
+
+        ModelAndView profilepaciente = new ModelAndView("/private/paciente/internacao");
+
+//        this.paciente = getservice().findOne(idf);
+        
+//	   	 Usuario usuario;
+//	 	
+//	   	 String mail =SecurityContextHolder.getContext().getAuthentication().getName();
+//	        
+//	   	 usuario = usuarioServico.findByEmail(mail);
+//        
+//        Evolucao evolucao = new Evolucao();
+//        
+//        evolucao.setUsuario(usuario);
+//        evolucao.setData(new Date());
+//        evolucao.setDescricao(request.getParameter("descricao"));
+//        
+//        paciente.addEvolucao(evolucao);
+//        
+//        getservice().edit(paciente);
+//        
+//        
+//        
+//        Date datanow = new Date();
+        
+//        List<Patologia> patologias = patologiaServico.findAll();
+
+//        profilepaciente.addObject("paciente", paciente);
+//        profilepaciente.addObject("patologias", patologias);
+//        profilepaciente.addObject("evolucao", new Evolucao());
+        
+        
+//        profilepaciente.addObject("datanow", datanow);
+//        profilepaciente.addObject("evolucao", new Evolucao());
+
+        return profilepaciente;
+    } 
+    
+    
 
 	@Override
 	protected PacienteServicoImpl getservice() {
