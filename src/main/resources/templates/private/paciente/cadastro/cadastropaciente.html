@@ -191,7 +191,7 @@
 <!--           <form class="form-horizonta" method="post" -->
 <!--                              th:action="@{/paciente/add}"> -->
                              
-                             
+             <div class="form group">               
 			<div class="checkbox">
                 <label>
 				<input id="ativo" name="optionsCheckboxes"  type="checkbox" th:checked="${paciente.ativo}" class="checkbox"/>Ativo?
@@ -200,15 +200,18 @@
               
               <div class="checkbox">
                 <label>
-				<input id="alta" name="optionsCheckboxes"  type="checkbox" th:checked="${paciente.alta}" class="checkbox"/>Alta?
+				<input id="alta" name="alta"  type="checkbox" th:checked="*{alta}" class="checkbox"/>Alta?
 				</label>
               </div>
               
-                            <div class="checkbox">
+               <div class="checkbox">
                 <label>
-				<input id="internacao" name="optionsCheckboxes"  type="checkbox" th:checked="${paciente.internacao}" class="checkbox"/>Internado?
+				<input id="internacao" name="internacao"  type="checkbox" th:checked="*{internacao}" class="checkbox"/>Internado?
 				</label>
               </div>
+              
+              
+              </div> 
 
 						<div class="form-group label-floating ">
                              <div class="input-group">
@@ -226,7 +229,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-user"></i>
                   </div>
-                                    <input id="nome" class="form-control" name="nome" type="text" th:value="${paciente.nome}"
+                                    <input autocomplete="off" id="nome" class="form-control" name="nome" type="text" th:value="${paciente.nome}"
                                            placeholder="Nome"> </input>
                                 </div>
                             </div>
@@ -250,7 +253,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-phone-square"></i>
                   </div>
-                                    <input id="telefone" class="form-control" name="telefone" type="text" th:value="${paciente.telefone}"
+                                    <input autocomplete="off" id="telefone" class="form-control" name="telefone" type="text" th:value="${paciente.telefone}"
                                            placeholder="telefone"> </input>
                                 </div>
                             </div>
@@ -261,7 +264,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-tag"></i>
                   </div>
-                                    <input id="cpf" class="form-control" name="cpf" type="text" th:value="${paciente.cpf}"
+                                    <input autocomplete="off" id="cpf" class="form-control" name="cpf" type="text" th:value="${paciente.cpf}"
                                            placeholder="Cpf"> </input>
                                 </div>
                             </div>
@@ -306,8 +309,9 @@
                   <div class="input-group-addon">
                     <i class="fa fa-folder"></i>
                   </div>
+                  <label>Escolha o tipo de terapia</label>
 
-                                    <select id="tipoterapia" name="tipoterapia" class="form-control">
+                                    <select id="tipoterapia" name="tipoterapia" class="form-control select2">
                                         <optgroup label="Escolha o tipo de terapia">
 
                                             <option th:value="${paciente.tipoterapia}" th:selected="selected"
@@ -335,8 +339,8 @@
                   <div class="input-group-addon">
                     <i class="fa fa-folder"></i>
                   </div>
-
-                                    <select id="plano" name="plano" class="form-control">
+  <label>Escolha o Convenio</label>
+                                    <select id="plano" name="plano" class="form-control select2">
                                         <optgroup label="Escolha o Convenio">
 
                                             <option th:value="${paciente.plano}" th:selected="selected"
@@ -386,7 +390,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-photo"></i>
                   </div>
-                                    <input id="foto" class="form-control" name="foto" type="text" th:value="${filename}"
+                                    <input autocomplete="off" id="foto" class="form-control" name="foto" type="text" th:value="${filename}"
                                            placeholder="Foto"> </input>
                                 </div>
                             </div>
@@ -397,7 +401,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar-plus-o"></i>
                   </div>
-                                    <input id="frequenciasemanal" class="form-control" name="frequenciasemanal" type="text" th:value="${paciente.frequenciasemanal}"
+                                    <input autocomplete="off" id="frequenciasemanal" class="form-control" name="frequenciasemanal" type="text" th:value="${paciente.frequenciasemanal}"
                                            placeholder="Frequencia Semanal"> </input>
                                 </div>
                             </div>
@@ -408,7 +412,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-pencil-square-o"></i>
                   </div>
-                            <textarea id="obs" class="form-control" name="obs"  th:placeholder="${paciente.obs}" th:value="${paciente.obs}"></textarea>
+                            <textarea id="obs" autocomplete="off" class="form-control" name="obs"  th:placeholder="${paciente.obs}" th:value="${paciente.obs}"></textarea>
                             </div>
                             </div>
 <!--                             </div> -->
@@ -427,7 +431,7 @@
         
         <div class="col-md-4" style="margin:5px;">
         
-        			<form th:action="@{/paciente/salvarfotopaciente}" ModelAttribute="paciente"  enctype="multipart/form-data"  method="post">
+        			<form th:action="@{/paciente/salvarfotopaciente}" th:object="${paciente}" ModelAttribute="paciente"  enctype="multipart/form-data"  method="post">
         
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
@@ -487,7 +491,7 @@
                 </div>
                     <h5 class="description-header" th:unless="${paciente.id}">
                     
-	                    <button class="btn btn-block btn-primary btn-sm" type="submit">Add foto
+	                    <button class="btn btn-block btn-primary disabled" type="submit">Add foto
 		                    <div class="ripple-container">
 		                    
 		                    </div>

@@ -31,6 +31,7 @@ import com.tecsoluction.agenda.servico.PacienteServicoImpl;
 import com.tecsoluction.agenda.servico.PatologiaServicoImpl;
 import com.tecsoluction.agenda.servico.UsuarioServicoImpl;
 import com.tecsoluction.agenda.util.StatusAtividade;
+import com.tecsoluction.agenda.util.StatusTratamento;
 
 
 @Controller
@@ -58,6 +59,8 @@ public class HomeController {
     private JavaMailSender mailSender;
     
     private StatusAtividade status[];
+    
+    private StatusTratamento statustratamento[];
     
 	
     private List<Atividade> atividades = new ArrayList<Atividade>();

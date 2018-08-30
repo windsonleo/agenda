@@ -170,17 +170,32 @@
 			th:src="@{/js/demo.js}"></script>
 
 <script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
+$(function () {
+//  $("#example1").DataTable();
+ $('#example1').DataTable({
+   "paging": true,
+   "lengthChange": true,
+   "searching": true,
+   "ordering": true,
+   "info": true,
+   "autoWidth": true,
+   "language": {
+       "lengthMenu": "Exibir _MENU_ registro por pagina",
+       "zeroRecords": "Nenhum Registro - Desculpe",
+       "info": "Exibindo pagina _PAGE_ of _PAGES_",
+       "infoEmpty": "Nenhum Registro Disponivel",
+       "infoFiltered": "(filtrado de _MAX_ registro)",
+       "search":"Pesquisar:",
+       "paginate": {
+           "first":      "Primeiro",
+           "last":       "Ultimo",
+           "next":       "Proximo",
+           "previous":   "Anterior"
+       }
+       
+   }
+ });
+});
 </script>
 			
 </body>

@@ -110,7 +110,7 @@ public class Endereco extends BaseEntity implements Serializable {
     @Override
     public String toString() {
     	// TODO Auto-generated method stub
-    	return logradouro +","+ bairro +","+ cidade;
+    	return logradouro +", Nº "+ numero+","+ bairro +","+ cidade;
     }
 
 }

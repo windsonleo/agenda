@@ -48,6 +48,10 @@
               <p class="text-muted text-center" th:utext="${paciente.plano}">Software Engineer</p>
 
               <ul class="list-group list-group-unbordered">
+              
+                              <li class="list-group-item">
+                  <b>Idade</b> <a class="pull-right" th:text="${paciente.CalcularIdade()}">1,322</a>
+                </li>
                 <li class="list-group-item">
                   <b>Tipo Terapia</b> <a class="pull-right" th:utext="${paciente.tipoterapia}">1,322</a>
                 </li>
@@ -89,6 +93,9 @@
               <strong><i class="fa fa-map-marker margin-r-5"></i> Endereco</strong>
 
               <p class="text-muted" th:utext="${paciente.endereco}">Malibu, California</p>
+
+              <a th:href="@{/paciente/AddPatologia(id=${paciente.id})}" class="btn btn-info btn-raised btn-block"><b>Mapa</b></a>
+
 
               <hr> </hr>
 

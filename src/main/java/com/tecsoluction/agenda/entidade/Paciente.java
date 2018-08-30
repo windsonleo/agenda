@@ -1,6 +1,7 @@
 package com.tecsoluction.agenda.entidade;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -34,7 +35,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tecsoluction.agenda.framework.BaseEntity;
 import com.tecsoluction.agenda.util.PlanoSaude;
+import com.tecsoluction.agenda.util.StatusTratamento;
 import com.tecsoluction.agenda.util.TipoTerapia;
+import com.tecsoluction.agenda.util.UtilsDate;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -64,6 +67,12 @@ public class Paciente  extends BaseEntity implements Serializable {
     @Column(name = "PLANOSAUDE")
     @Enumerated(EnumType.STRING)
 	private PlanoSaude plano;
+    
+    
+    @Column(name = "STATUSTRATAMENTO")
+    @Enumerated(EnumType.STRING)
+	private StatusTratamento statustratamento;
+    
 	
 	private String cpf;
 	
@@ -104,11 +113,11 @@ public class Paciente  extends BaseEntity implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "idpatologia"))
     private Set<Patologia> patologias;
     
-    @Column(name = "ALTA", nullable=true)
-    private boolean alta;
+    @Column(name = "ALTA")
+    private boolean alta = false;
     
-    @Column(name = "INTERNACAO", nullable=true)
-    private boolean internacao;
+    @Column(name = "INTERNACAO")
+    private boolean internacao = false;
     
 	
 
@@ -179,7 +188,50 @@ public class Paciente  extends BaseEntity implements Serializable {
 		public String toString() {
 			return nome;
 		}
-	
+		
+		
+		
+		
+		public int DiasTotais() {
+			
+			
+			UtilsDate utildate = new UtilsDate();
+			
+			
+			
+			
+			return utildate.toQtdDiasEntreDatas(getDatainicio(), getDatafim());
+		}
+		
+		
+		
+		public int DiasRestantes() {
+			
+
+			UtilsDate utildate = new UtilsDate();
+			
+			Date datahoje = new Date();
+			
+			
+			
+			return utildate.toQtdDiasEntreDatas(datahoje, getDatafim());
+			
+		}
+		
+		
+		
+		public int CalcularIdade() {
+			
+
+			UtilsDate utildate = new UtilsDate();
+			
+			Date datahoje = new Date();
+			
+			
+			
+			return utildate.toQtdAnosDataAtual(datahoje, getDatanascimento());
+			
+		}
 	
 	
 }

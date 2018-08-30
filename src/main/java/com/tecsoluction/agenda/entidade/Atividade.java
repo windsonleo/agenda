@@ -1,6 +1,7 @@
 package com.tecsoluction.agenda.entidade;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -18,6 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tecsoluction.agenda.framework.BaseEntity;
 import com.tecsoluction.agenda.util.StatusAtividade;
+import com.tecsoluction.agenda.util.UtilsDate;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -38,15 +40,22 @@ public class Atividade extends BaseEntity implements Serializable {
 //    @NotBlank(message = "Nome do Banco obrigatorio")
     private String descricao;
     
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name="datainicio")
 //    @NotBlank(message = "Numero do Banco  obrigatorio")
     private Date datainicio;
 
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name="datafim")
 //    @NotBlank(message = "Numero do Banco  obrigatorio")
     private Date datafim;
+    
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern ="HH:mm")
+    @Column(name="hora")
+    private Date hora;
     
     @Enumerated(EnumType.STRING)
     private StatusAtividade status;
@@ -67,5 +76,57 @@ public class Atividade extends BaseEntity implements Serializable {
     public String toString() {
         return descricao.toUpperCase();
     }
+    
+    
+    
+    public int DiasTotais() {
+		
+		
+		UtilsDate utildate = new UtilsDate();
+		
+		
+		
+		
+		return utildate.toQtdDiasEntreDatas(getDatainicio(), getDatafim());
+	}
+	
+	
+	
+	public int DiasRestantes() {
+		
+
+		UtilsDate utildate = new UtilsDate();
+		
+		Date datahoje = new Date();
+		
+		System.out.println("data classe Atividade , Method: DiasRestantes" + datahoje);
+		
+		
+		
+		
+		return utildate.toQtdDiasEntreDatas(datahoje, getDatafim());
+		
+	}
+	
+	
+	
+	public long HorasRestantes() {
+		
+
+		UtilsDate utildate = new UtilsDate();
+		
+		Date horaagora = new Date();
+		
+		long hora = horaagora.getTime();
+				
+		System.out.println("hora classe Atividade , Method: HorasRestantes" + hora);
+
+		
+		
+		return utildate.toQtdHorasDataAtual(hora, getHora());
+		
+	}
+	
+	
 
 }
