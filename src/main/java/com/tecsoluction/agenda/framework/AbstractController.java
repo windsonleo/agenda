@@ -98,6 +98,8 @@ public abstract class AbstractController<Entity> {
 
 
         ModelAndView cadastroEntity = new ModelAndView("/private/"+entityAlias+"/cadastro/cadastro" + entityAlias);
+        
+        getservice().edit(entity);
 
         cadastroEntity.addObject("acao", "add");
 

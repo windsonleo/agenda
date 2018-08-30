@@ -114,7 +114,7 @@
                          <div class="panel-body" style="padding-bottom:30px;">
 		 
 			 
-				 <form th:action="@{/paciente/add}" ModelAttribute="paciente" method="POST">      
+				 <form th:action="@{/paciente/add}" ModelAttribute="paciente" method="POST" th:object="${paciente}">      
       
                   
 <!--                             <div class="card card-profile"> -->
@@ -285,8 +285,8 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                                    <input autocomplete="off" id="datepicker" class="form-control pull-right" name="datanascimento" type="text" th:value="${paciente.datanascimento}"
-                                           placeholder="Data Nascimento"/>
+                                    <input autocomplete="off" id="datanascimento" class="form-control pull-right" name="datanascimento" type="text" th:field="*{datanascimento}"
+                                           placeholder="Data Nascimento" />
                                 </div>
                                 </div>
 <!--                             </div> -->
@@ -364,7 +364,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar-check-o"></i>
                   </div>
-                                    <input autocomplete="off" id="datainicio" class="form-control" name="datainicio" type="text" th:value="${paciente.datainicio}"
+                                    <input autocomplete="off" id="datainicio" class="form-control" name="datainicio" type="text" th:field="*{datainicio}"
                                            placeholder="Data Inicio"> </input>
                                 </div>
                             </div>
@@ -375,7 +375,7 @@
                   <div class="input-group-addon">
                     <i class="fa  fa-calendar-times-o"></i>
                   </div>
-                                    <input autocomplete="off" id="datafim" class="form-control" name="datafim" type="text" th:value="${paciente.datafim}"
+                                    <input autocomplete="off" id="datafim" class="form-control" name="datafim" type="text" th:field="*{datafim}"
                                            placeholder="Data Termino"> </input>
                                 </div>
                             </div>
@@ -386,7 +386,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-photo"></i>
                   </div>
-                                    <input id="foto" class="form-control" name="foto" type="text" th:value="${paciente.foto}"
+                                    <input id="foto" class="form-control" name="foto" type="text" th:value="${filename}"
                                            placeholder="Foto"> </input>
                                 </div>
                             </div>
@@ -438,23 +438,23 @@
             </div>
             
             
-            <div class="widget-user-image" th:if="${filename}">
-              <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${filename})}" alt="User Avatar file"/>
-            </div>
-            
-<!--                         <div class="widget-user-image" th:unless="${filename}"> -->
-<!--               <img class="img-circle" th:src="@{/img/avatar2.png}" alt="User Avatar file unles"/> -->
+<!--             <div class="widget-user-image" th:if="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${filename})}" alt="User Avatar file"/> -->
 <!--             </div> -->
+            
+                        <div class="widget-user-image" th:unless="${paciente.foto}">
+              <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${filename})}" alt="User Avatar file unles"/>
+            </div>
             
             
             
                        <div class="widget-user-image" th:if="${paciente.foto}">
-              <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}" alt="User Avatar pac"/>
+              <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}" alt="User Avatar pac if"/>
             </div>
             
-                                   <div class="widget-user-image" th:unless="${paciente.foto}">
-              <img class="img-circle" th:src="@{/img/paciente/avatar2.png}" alt="User Avatar pac unlesss"/>
-            </div>
+<!--                                    <div class="widget-user-image" th:unless="${paciente.foto}"> -->
+<!--               <img class="img-circle" th:src="@{/img/paciente/avatar2.png}" alt="User Avatar pac unlesss"/> -->
+<!--             </div> -->
             
             
             
@@ -629,7 +629,7 @@
 			
 		     $(function () {
 	    	
-		     $('#datepicker').datepicker({
+		     $('#datanascimento').datepicker({
 		         autoclose: true,
 		         format: 'dd/mm/yyyy',
 			    	language: 'pt-BR'

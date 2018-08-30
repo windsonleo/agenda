@@ -105,7 +105,7 @@
 			  
 			        
 			        
-            <div class="col-md-7 panel">
+            <div class="col-md-9 panel">
 		 <div class="col-md-7">
 <!--                       <div class="panel form-element-padding"> -->
                         <div class="panel-heading">
@@ -114,7 +114,7 @@
                          <div class="panel-body" style="padding-bottom:30px;">
 		 
 			 
-				 <form th:action="@{/patologia/add}" ModelAttribute="patologia" method="POST">      
+				 <form th:action="@{/patologia/add}" ModelAttribute="patologia" method="POST" th:object="${patologia}">      
       
                   
 <!--                             <div class="card card-profile"> -->

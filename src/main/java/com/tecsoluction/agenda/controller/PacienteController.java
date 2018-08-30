@@ -115,6 +115,7 @@ public class PacienteController extends AbstractController<Paciente> {
         model.addAttribute("tiposterapia", tipo);
         model.addAttribute("paciente", paciente);
         model.addAttribute("planossaude", planossaude);
+        model.addAttribute("filename", filename);
 
         
 

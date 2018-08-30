@@ -228,8 +228,8 @@
                   <tr th:each="paciente: ${pacientes}">
                     <td><a href="#" th:utext="${paciente.id}">OR9842</a></td>
                     <td th:utext="${paciente.nome}">Call of Duty IV</td>
-                     <td th:utext="${paciente.datainicio}">Call of Duty IV</td>
-                      <td th:utext="${paciente.datafim}">Call of Duty IV</td>
+                     <td th:utext="${#dates.format(paciente.datainicio,'dd-MM-yyyy')}">Call of Duty IV</td>
+                      <td th:utext="${#dates.format(paciente.datafim,'dd-MM-yyyy')}">Call of Duty IV</td>
                     <td><span class="label label-success" >Andamento</span></td>
                      <td th:utext="${paciente.plano}">Call of Duty IV</td>
                   </tr>

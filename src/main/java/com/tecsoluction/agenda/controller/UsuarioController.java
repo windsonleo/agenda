@@ -92,6 +92,7 @@ public class UsuarioController extends AbstractController<Usuario> {
 //        model.addAttribute("generos", generos);
         model.addAttribute("usuario", usuario);
         model.addAttribute("roles", roles);
+        model.addAttribute("filename", filename);
 
         
 

@@ -108,7 +108,7 @@
                          <div class="panel-body" style="padding-bottom:30px;">
 		 
 			 
-				 <form th:action="@{/usuario/add}" ModelAttribute="usuario" method="POST">
+				 <form th:action="@{/usuario/add}" th:object="${usuario}" ModelAttribute="usuario" method="POST">
 
 
 			         <div class="form-group">
@@ -206,7 +206,7 @@
                     <i class="fa fa-photo"></i>
                   </div>
 							
-										<input id="foto" name="foto" class="form-control android" type="text"  th:value="${usuario.foto}" placeholder="Digite a foto" />
+										<input id="foto" name="foto" class="form-control android" type="text"  th:value="${filename}" placeholder="Digite a foto" />
 							
 			                </div>
 			              </div>
@@ -284,9 +284,9 @@
               <h5 class="widget-user-desc"  th:text="${usuario.roles}">Founder &amp; CEO</h5>
             </div>
             
-            <div class="widget-user-image" th:if="${filename}">
-              <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar file if"/>
-            </div>
+<!--             <div class="widget-user-image" th:if="${filename}"> -->
+<!--               <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar file if"/> -->
+<!--             </div> -->
             
 <!--                         <div class="widget-user-image" th:unless="${filename}"> -->
 <!--               <img class="img-circle" th:src="@{/img/avatar2.png}" alt="User Avatar file unless"/> -->
@@ -299,7 +299,7 @@
             </div>
             
                                    <div class="widget-user-image" th:unless="${usuario.foto}">
-              <img class="img-circle" th:src="@{/img/usuario/avatar2.png}" alt="User Avatar usu unless"/>
+              <img class="img-circle" th:src="@{/img/usuario/{fotoc}(fotoc=${filename})}" alt="User Avatar usu unless" />
             </div>
             
             
