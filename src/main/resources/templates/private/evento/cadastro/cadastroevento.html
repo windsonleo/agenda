@@ -118,7 +118,7 @@
             
             
            <a th:href="@{/evento/movimentacao}" class="btn btn-info btn-raised btn-block"><b>Movimentacao</b></a>
-            
+             <button class="btn btn-success btn-raised btn-block" onclick="EnviarEventoServer()"><b>Atualizar</b></button>
             
           </div>
         </div>
@@ -321,9 +321,10 @@ $(function () {
        
         events: { // you can also specify a plain string like 'json/events.json'
 //         url: '/agenda/evento/listar/',
+ 			url: '/evento/listar/',
         
         
- 		url: '/evento/listar/',
+//  		url: '/evento/listar/',
         error: function() {
           $('#script-warning').show();
         }
@@ -492,6 +493,60 @@ $(function () {
 //     alert('teste:');
   
   });
+	  
+	  
+	  function EnviarEventoServer() {
+		  
+		  
+		  var eventos = $('#calendar').fullCalendar('clientEvents');
+		  
+		  var dias = [];
+
+		// Percorrer array de eventos armazenando os dias que ainda não estão no array
+		eventos.forEach(function(evento){
+		    var data = evento.start._d;
+		    var dataf = evento.end._d;
+		    console.log("Hello data fim" , dataf );
+		    
+		   
+		    var dataString = data.getFullYear() + '-' + data.getMonth() + '-' + data.getDate();
+		    if(dias.indexOf(dataString) < 0){
+		        dias.push(dataString);
+		    }
+		});
+		
+		 console.log("Hello eventos" ,eventos );
+		 console.log("Hello dias" ,dias );
+		 
+			$.ajax({
+				type: "POST",
+				contentType: "application/json",
+// 				url: "/agenda/evento/salvar/",
+				url: "/evento/salvar/",
+				data: JSON.stringify(eventos), // convert array to JSON
+				dataType: 'json',
+				cache: false,
+				timeout: 100000,
+				success: function (data) {
+
+					console.log("SUCCESS : ", data);
+					alert("Eventos Atualizados : " + data);
+					window.location.reload();
+
+				},
+				error: function (e) {
+
+					console.log("ERROR : ", e);
+
+				}
+			});
+		  
+		  
+	  }
+		  
+	  
+	  
+	  
 	        
 	        /*]]>*/
 
