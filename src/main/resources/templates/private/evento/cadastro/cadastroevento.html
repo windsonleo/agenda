@@ -1120,6 +1120,9 @@ $(function () {
 		eventLimit: true,
 		lang:'pt-br',
 		slotMinutes:10,
+		selectable: true,
+		selectHelper: true,
+
 		
 		// this allows things to be dropped onto the calendar !!!
       
@@ -1160,7 +1163,7 @@ $(function () {
       
       eventRender: function (event, element) {
           element.attr('href', 'javascript:void(0);');
-          element.draggable();
+//           element.draggable();
 //           $(element).addTouch();
           element.click(function() {
               $("#start").html(moment(event.start).format('MMM Do h:mm A'));
