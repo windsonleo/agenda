@@ -8,6 +8,43 @@
 <!-- 	<body id="mimin" class="dashboard form-signin-wrapper"> -->
 	<body  class="hold-transition login-page">
 	
+	
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '257939481517221',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v3.1'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+  
+
+  FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+  });
+  
+  
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+  
+</script>
+	
 	<div class="login-box">
   <div class="login-logo">
     <a href="#">Marcella<b>Lima</b></a>
@@ -47,6 +84,12 @@
         Facebook </a>
       <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
         Google+ </a>
+        
+        <fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+
     </div>
     <!-- /.social-auth-links -->
 
