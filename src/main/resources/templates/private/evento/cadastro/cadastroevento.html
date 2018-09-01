@@ -1011,7 +1011,9 @@ a.fc-more:hover {
 		}
 		
 		document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
-		$('.fc-event-container').draggable();
+// 		$('#calendar').addTouch();
+
+// 		 $('.fc-view tbody').draggable();
 		
 		}
 	  
@@ -1158,6 +1160,8 @@ $(function () {
       
       eventRender: function (event, element) {
           element.attr('href', 'javascript:void(0);');
+          element.draggable();
+//           $(element).addTouch();
           element.click(function() {
               $("#start").html(moment(event.start).format('MMM Do h:mm A'));
               $("#end").html(moment(event.end).format('MMM Do h:mm A'));
@@ -1178,11 +1182,16 @@ $(function () {
       
       
       
+      
+      
+      
 
       
     });
     
-    $('#calendar').addTouch();
+    $('.fc-view tbody').draggable();
+    
+//     $('#calendar').addTouch();
 
     /* ADDING EVENTS */
     
@@ -1321,7 +1330,7 @@ $(function () {
 		}
 	  
 	  
-	  $('#calendar').addTouch();
+// 	  $('#calendar').addTouch();
 	  
 	        
 	        /*]]>*/
