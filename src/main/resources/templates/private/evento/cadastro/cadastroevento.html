@@ -1181,10 +1181,12 @@ $(function () {
 //               $("#eventLink").attr('href', event.url);
 //               $("#eventContent").dialog({ modal: true, title: event.title, width:350});
           });
-      }
+      },
       
       
-      
+      eventAfterRender: function(event, element, view) {
+          element.draggable();
+        }
       
       
       
