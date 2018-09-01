@@ -1068,6 +1068,8 @@ $(function () {
     
     
     $('#calendar').fullCalendar({
+    	
+    	themeSystem: 'jquery-ui',
       header: {
         left: 'prev,next today',
         center: 'title',
@@ -1121,7 +1123,10 @@ $(function () {
 		lang:'pt-br',
 		slotMinutes:10,
 		selectable: true,
-		selectHelper: true,
+// 		selectHelper: true,
+		nowIndicator:true,
+		slotDuration:'00:10:00',
+
 
 		
 		// this allows things to be dropped onto the calendar !!!
