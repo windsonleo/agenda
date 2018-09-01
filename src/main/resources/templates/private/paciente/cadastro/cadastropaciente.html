@@ -316,8 +316,13 @@
                   <div class="input-group-addon">
                     <i class="fa fa-photo"></i>
                   </div>
-                                    <input autocomplete="off" id="foto" class="form-control" name="foto" type="text" th:value="${filename}"
+                                    <input th:unless="${paciente.foto}" autocomplete="off" id="foto" class="form-control" name="foto" type="text" th:value="${filename}"
                                            placeholder="Foto"> </input>
+                                           
+                                        <input   th:if="${paciente.foto}" autocomplete="off" id="foto" class="form-control" name="foto" type="text" th:value="${paciente.foto}"
+                                           placeholder="Foto"> </input>
+                                           
+                                           
                                 </div>
                             </div>
 <!--                             </div> -->
