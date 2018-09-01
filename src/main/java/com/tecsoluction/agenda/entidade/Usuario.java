@@ -57,6 +57,13 @@ public class Usuario  extends BaseEntity implements Serializable {
     @OneToMany(mappedBy="usuario",fetch=FetchType.EAGER)
     private Set<Atividade> atividades;
     
+    
+    @JsonIgnore
+    @OneToMany(mappedBy="usuario",fetch=FetchType.EAGER)
+    private Set<Atendimento> atendimentos;
+    
+    
+    
 //    @OneToOne
 //    @JoinColumn(name="perfil_id")
 //    private Perfil perfil;

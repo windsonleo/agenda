@@ -115,81 +115,7 @@
 		 
 			 
 				     
-      
-                  
-<!--                             <div class="card card-profile"> -->
-                               
-<!--                                 <div class="card-avatar" th:if="${filename}"> -->
-<!--                                     <a href="#pablo"> -->
-<!--                                        <img class="img" src="/img/vazio.jpg"  th:src="${filename}"/> --> 
-<!--                                     <img class="img" th:src="@{/img/paciente/{fotoc}(fotoc=${filename})}"/> -->
-                                    
-<!--                                     </a> -->
-                                    
-                                    
-<!--                                 </div> -->
-                           
-<!--                            <div class="card-avatar" th:unless="${filename}"> -->
-<!--                                     <a href="#pablo"> -->
-<!--                                          <img class="img" src="/img/vazio.jpg"  th:src="${filename}"/> --> 
-<!--                                    <img class="img" th:src="@{/img/paciente/vazio.jpg}"/> --> 
-                                    
-<!--                                     </a> -->
-                                    
-                                    
-<!--                                 </div> -->
-                                
-                               
-                                
-<!--                                   <div class="card-avatar" th:if="${paciente.foto}"> -->
-                                     
-<!--                                      <a href="#pablo"> -->
-<!--                                     <img class="img" th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}"/> -->
-<!--                                    </a> -->
-                            
-<!-- 								</div> -->
-								
-<!-- 							<div class="card-avatar" th:unless="${paciente.foto}"> -->
-                                     
-<!--                                      <a href="#pablo"> -->
-<!--                                     <img class="img" th:src="@{/img/paciente/vazio.jpg}"/> -->
-<!--                                    </a> -->
-                            
-<!-- 								</div> -->
-								
-								
-								
-<!--                             	<div class="form-group  is-fileinput"> -->
-<!-- 									    <input type="file" id="file" multiple="multiple" name="file"/> -->
-<!-- 									    <div class="input-group"> -->
-<!-- 									      <input type="text" readonly="readonly" class="form-control" placeholder="Selecione a Foto..." />  -->
-<!-- 									        <span class="input-group-btn input-group-sm"> -->
-<!-- 									          <button type="button" class="btn btn-fab btn-fab-mini"> -->
-<!-- 									            <i class="material-icons">attach_file</i> -->
-<!-- 									          </button> -->
-<!-- 									        </span> -->
-									   
-<!-- 									   	<button type="submit"  class="btn btn-info btn-round btn-md">Salvar Foto</button> -->
-									   
-<!-- 									    </div> -->
-								
-<!-- 									</div> -->
-                            
-                            
-<!--                             </div> -->
-<!--                         </div> -->
-                             
-									
-                                       
-<!--               <span class="material-input"></span> -->
-                         		
-                                    
-<!--               </form> -->
-              
-<!--               </div>  -->
-                             
-<!--           <form class="form-horizonta" method="post" -->
-<!--                              th:action="@{/paciente/add}"> -->
+  
                              
                              
 			<div class="checkbox">
@@ -230,19 +156,7 @@
                                            placeholder="Nome"> </input>
                                 </div>
                             </div>
-<!--                             </div> -->
-                            
-                            
-                            
-<!--                              <div class="form-group label-floating "> -->
-<!--                             <div class="control-group"> -->
-<!--                                 <label class="control-label">Email</label> -->
-<!--                                 <div class="controls"> -->
-<!--                                     <input id="email" class="form-control" name="email" type="text" th:value="${paciente.email}" -->
-<!--                                            placeholder=""> </input> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-<!--                             </div> -->
+
                             
                            <div class="form-group label-floating ">
 <!--                             <div class="control-group"> -->
@@ -265,17 +179,7 @@
                                            placeholder="Cpf"> </input>
                                 </div>
                             </div>
-<!--                             </div> -->
-                            
-<!--                             <div class="form-group label-floating "> -->
-<!--                             <div class="control-group"> -->
-<!--                                 <label class="control-label">RG</label> -->
-<!--                                 <div class="controls"> -->
-<!--                                     <input id="rg" class="form-control" name="rg" type="text" th:value="${paciente.rg}" -->
-<!--                                            placeholder=""> </input> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-<!--                             </div> -->
+
                             
                                                         
                             <div class="form-group label-floating ">
@@ -289,15 +193,7 @@
                                            placeholder="Data Nascimento"/>
                                 </div>
                                 </div>
-<!--                             </div> -->
-                            
-<!--                     <div class="input-group date"> -->
-<!--                   <div class="input-group-addon"> -->
-<!--                     <i class="fa fa-calendar"></i> -->
-<!--                   </div> -->
-<!--                   <input type="text" class="form-control pull-right" id="datepicker"/> -->
-<!--                 </div> -->
-<!--                             </div> -->
+
                             
                             
 							
@@ -439,13 +335,7 @@
                             <textarea id="obs" class="form-control" name="obs"  th:placeholder="${paciente.obs}" th:value="${paciente.obs}"></textarea>
                             </div>
                             </div>
-<!--                             </div> -->
-                            
-                            
-<!--                             <div class="form-actions"> -->
-<!--                                 <input type="submit" th:value="${acao}" class="btn btn-success"> </input> -->
-<!--                             </div> -->
-<!--                         </form> -->
+
                     </div>
                 </div>
             </div>
@@ -454,9 +344,7 @@
         
         
         <div class="col-md-4" style="margin:5px;">
-        
-<!--         <form th:action="@{/paciente/addPatologia(id=${paciente.id})}"  th:object="${paciente}" enctype="multipart/form-data"  method="post"> -->
-        
+                
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -469,12 +357,7 @@
             <div class="widget-user-image" th:if="${filename}">
               <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${filename})}" alt="User Avatar file"/>
             </div>
-            
-<!--                         <div class="widget-user-image" th:unless="${filename}"> -->
-<!--               <img class="img-circle" th:src="@{/img/avatar2.png}" alt="User Avatar file unles"/> -->
-<!--             </div> -->
-            
-            
+                
             
                        <div class="widget-user-image" th:if="${paciente.foto}">
               <img class="img-circle" th:src="@{/img/paciente/{fotoc}(fotoc=${paciente.foto})}" alt="User Avatar pac"/>
@@ -488,22 +371,7 @@
             
             <div class="box-footer">
               <div class="row">
-<!--                 <div class="col-sm-4 border-right"> -->
-<!--                   <div class="description-block"> -->
-<!--                     <h5 class="description-header">3,200</h5> -->
-<!--                     <span class="description-text">SALES</span> -->
-<!--                   </div> -->
-<!--                   /.description-block -->
-<!--                 </div> -->
-                <!-- /.col -->
-<!--                 <div class="col-sm-4 border-right"> -->
-<!--                   <div class="description-block"> -->
-<!--                     <h5 class="description-header">13,000</h5> -->
-<!--                     <span class="description-text">FOLLOWERS</span> -->
-<!--                   </div> -->
-<!--                   /.description-block -->
-<!--                 </div> -->
-                <!-- /.col -->
+
                 <div class="col-sm-12">
                 
               <div class="form-group">

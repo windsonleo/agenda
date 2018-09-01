@@ -113,6 +113,10 @@ public class Paciente  extends BaseEntity implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "idpatologia"))
     private Set<Patologia> patologias;
     
+    @OneToMany(mappedBy="paciente",fetch=FetchType.EAGER)
+    private Set<Atendimento> atendimentos;
+    
+    
     @Column(name = "ALTA")
     private boolean alta = false;
     
