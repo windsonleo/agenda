@@ -18,7 +18,15 @@
       version    : 'v3.1'
     });
       
-    FB.AppEvents.logPageView();   
+    FB.AppEvents.logPageView();  
+    
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+      }
+    
+    
       
   };
 
@@ -31,17 +39,13 @@
    }(document, 'script', 'facebook-jssdk'));
   
 
-  FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-  });
+//   FB.getLoginStatus(function(response) {
+//       statusChangeCallback(response);
+//   });
   
   
 
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
+
   
 </script>
 	
