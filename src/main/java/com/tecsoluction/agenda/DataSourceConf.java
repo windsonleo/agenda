@@ -32,11 +32,17 @@ public class DataSourceConf {
 //        dataSource.setPassword("");
 		
 		//heroku
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://ec2-107-21-98-165.compute-1.amazonaws.com:5432/dfgl4a8isctde5");
-        dataSource.setUsername("bqjzlolhzrclji");        
-        dataSource.setPassword("c3759f8eefef3cead926283838213cba78beb65cf84343d516e8f7debb0c2289");
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("org.postgresql.Driver");
+//        dataSource.setUrl("jdbc:postgresql://ec2-107-21-98-165.compute-1.amazonaws.com:5432/dfgl4a8isctde5");
+//        dataSource.setUsername("bqjzlolhzrclji");        
+//        dataSource.setPassword("c3759f8eefef3cead926283838213cba78beb65cf84343d516e8f7debb0c2289");
+
+		 DriverManagerDataSource dataSource = new DriverManagerDataSource();
+	        dataSource.setDriverClassName("org.postgresql.Driver");
+	        dataSource.setUrl("jdbc:postgresql://ec2-54-209-165-105.compute-1.amazonaws.com:5432/daemfr8rdmb08f");
+	        dataSource.setUsername("cxkeiovufxnqic");        
+	        dataSource.setPassword("a99f155c076eb5f333a0e86538e7e498563922bbd84108ea622893c6bd65177b");
 
     	return dataSource;
     }
