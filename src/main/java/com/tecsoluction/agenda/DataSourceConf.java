@@ -70,7 +70,7 @@ public class DataSourceConf {
         va.setShowSql(true);
         va.setDatabasePlatform("org.hibernate.dialect.PostgreSQLDialect");
         Properties ps = new Properties();
-        ps.put("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
+        ps.put("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         ps.put("spring.jpa.hibernate.ddl-auto", "create");
 		ps.put("useSSL","false");
 		ps.put("spring.thymeleaf.encoding","UTF-8");
